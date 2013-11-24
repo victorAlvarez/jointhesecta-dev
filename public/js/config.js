@@ -2,17 +2,17 @@
 window.app.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/articles', {
-            templateUrl: 'views/articles/list.html'
+        when('/mensajes', {
+            templateUrl: 'views/mensajes/list.html'
         }).
-        when('/articles/create', {
-            templateUrl: 'views/articles/create.html'
+        when('/mensajes/create', {
+            templateUrl: 'views/mensajes/create.html'
         }).
-        when('/articles/:articleId/edit', {
-            templateUrl: 'views/articles/edit.html'
+        when('/mensajes/:mensajeId/edit', {
+            templateUrl: 'views/mensajes/edit.html'
         }).
-        when('/articles/:articleId', {
-            templateUrl: 'views/articles/view.html'
+        when('/mensajes/:mensajeId', {
+            templateUrl: 'views/mensajes/view.html'
         }).
         when('/', {
             templateUrl: 'views/index.html'
