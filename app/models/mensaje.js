@@ -7,9 +7,9 @@ var mongoose = require('mongoose'),
 
 
 /**
- * Article Schema
+ * Mensaje Schema
  */
-var ArticleSchema = new Schema({
+var MensajeSchema = new Schema({
     created: {
         type: Date,
         default: Date.now
@@ -33,14 +33,14 @@ var ArticleSchema = new Schema({
 /**
  * Validations
  */
-ArticleSchema.path('title').validate(function(title) {
+MensajeSchema.path('title').validate(function(title) {
     return title.length;
 }, 'Title cannot be blank');
 
 /**
  * Statics
  */
-ArticleSchema.statics = {
+MensajeSchema.statics = {
     load: function(id, cb) {
         this.findOne({
             _id: id
@@ -48,4 +48,4 @@ ArticleSchema.statics = {
     }
 };
 
-mongoose.model('Article', ArticleSchema);
+mongoose.model('Mensaje', MensajeSchema);
