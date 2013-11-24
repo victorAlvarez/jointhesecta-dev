@@ -1,0 +1,6 @@
+<section data-ng-controller="MensajesController" data-ng-init="findOne()">
+	<span>{{mensaje.created | date:'medium'}}</span> /
+	<span>{{mensaje.user.name}}</span>
+	<h2>{{mensaje.title}} <a data-ng-show="global.user._id == mensaje.user._id" href="/#!/mensajes/{{mensaje._id}}/edit">edit</a></h2>
+	<div>{{mensaje.content}}</div>
+</section>

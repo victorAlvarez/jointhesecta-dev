@@ -1,0 +1,11 @@
+<section data-ng-controller="MensajesController" data-ng-init="find()">
+	<ul class="mensajes unstyled">
+		<li data-ng-repeat="mensaje in mensajes">
+			<span>{{mensaje.created | date:'medium'}}</span> /
+			<span>{{mensaje.user.name}}</span>
+			<h2><a data-ng-href="#!/mensajes/{{mensaje._id}}">{{mensaje.title}}</a></h2>
+			<div>{{mensaje.content}}</div>
+		</li>
+	</ul>
+	<h1 data-ng-hide="!mensajes || mensajes.length">No mensajes yet. <br> Why don't you <a href="/#!/mensajes/create">Create One</a>?</h1>
+</section>
