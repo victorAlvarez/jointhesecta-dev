@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
     Article = mongoose.model('Article'),
     _ = require('underscore');
 
-
 /**
  * Find article by id
  */
