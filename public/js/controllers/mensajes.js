@@ -2,6 +2,16 @@ angular.module('jts.mensajes').controller('MensajesController', ['$scope', '$rou
     $scope.global = Global;
 
     $scope.create = function() {
+
+        console.log("Controller mensajes: create");
+        console.log(window.user);
+
+        if(window.user != null){
+            console.log("Conectado");
+        }else{
+            console.log("No conectado");
+        }
+
         var mensaje = new Mensajes({
             title: this.title,
             content: this.content
