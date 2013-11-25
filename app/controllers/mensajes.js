@@ -77,13 +77,22 @@ exports.show = function(req, res) {
  * List of mensaje
  */
 exports.all = function(req, res) {
+    if (req.user == undefined) {
+        // 'No puedes ver los mensajes sin acceder'
+        return res.send('users/signup', {
+            errors: "No puedes ver los mensajes sin acceder"
+        });
+    } else {
+        var user = req.user;
+    }
+
     Mensaje.find().sort('-created').populate('user', 'name username').exec(function(err, mensaje) {
         if (err) {
             res.render('error', {
                 status: 500
             });
         } else {
-            res.jsonp(mensajes);
+            res.jsonp(mensaje);
         }
     });
 };

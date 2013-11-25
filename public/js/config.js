@@ -14,6 +14,21 @@ window.app.config(['$routeProvider',
         when('/mensajes/:mensajeId', {
             templateUrl: 'views/mensajes/view.html'
         }).
+        when('/contact', {
+            templateUrl: 'views/contact.html'
+        }).
+        when('/modules', {
+            templateUrl: 'views/modules.html'
+        }).
+        when('/hosting', {
+            templateUrl: 'views/hosting.html'
+        }).
+        when('/phylosofy', {
+            templateUrl: 'views/phylosofy.html'
+        }).
+        when('/whoweare', {
+            templateUrl: 'views/whoweare.html'
+        }).
         when('/', {
             templateUrl: 'views/index.html'
         }).

@@ -1,0 +1,38 @@
+<section ng-controller="MensajesController">
+	<div class="hero-unit">
+		<img class="pull-right" src="../img/secta1.jpg">
+            <form class="form-horizontal" data-ng-submit="create()">
+			<fieldset>
+
+				<!-- Form Name -->
+				<legend>Contactanos</legend>
+
+				<!-- Text input-->
+				<div class="control-group">
+					<label class="control-label" for="title">Asunto</label>
+					<div class="controls">
+						<input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+					</div>
+				</div>
+	
+				<!-- Textarea -->
+				<div class="control-group">
+					<label class="control-label" for="content">Mensaje</label>
+					<div class="controls">
+						<textarea id="content" data-ng-model="content" name="content">Mensaje</textarea>
+					</div>
+				</div>
+
+				<!-- Button -->
+				<div class="control-group">
+					<label class="control-label" for="enviar"></label>
+					<div class="controls">
+						<button id="enviar" name="enviar" class="btn btn-success">Enviar</button>
+					</div>
+				</div>
+
+			</fieldset>
+		</form>
+	</div>
+</section>
+
