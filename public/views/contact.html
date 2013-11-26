@@ -1,38 +1,101 @@
 <section ng-controller="MensajesController">
-	<div class="hero-unit">
-		<img class="pull-right" src="../img/secta1.jpg">
-            <form class="form-horizontal" data-ng-submit="create()">
-			<fieldset>
+    <div class="hero-unit">
+        <img class="pull-right" src="../img/secta1.jpg">
 
-				<!-- Form Name -->
-				<legend>Contactanos</legend>
+        <form class="form-horizontal" data-ng-submit="create()">
+            <fieldset>
 
-				<!-- Text input-->
-				<div class="control-group">
-					<label class="control-label" for="title">Asunto</label>
-					<div class="controls">
-						<input type="text" data-ng-model="title" id="title" placeholder="Title" required>
-					</div>
-				</div>
-	
-				<!-- Textarea -->
-				<div class="control-group">
-					<label class="control-label" for="content">Mensaje</label>
-					<div class="controls">
-						<textarea id="content" data-ng-model="content" name="content">Mensaje</textarea>
-					</div>
-				</div>
+                <!-- Form Name -->
+                <legend>Contactanos</legend>
 
-				<!-- Button -->
-				<div class="control-group">
-					<label class="control-label" for="enviar"></label>
-					<div class="controls">
-						<button id="enviar" name="enviar" class="btn btn-success">Enviar</button>
-					</div>
-				</div>
+                <div ng-switch="!!global.user">
+                    <div ng-switch-when="true">
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="title">Asunto</label>
 
-			</fieldset>
-		</form>
-	</div>
+                            <div class="controls">
+                                <input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+                            </div>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="control-group">
+                            <label class="control-label" for="content">Mensaje</label>
+
+                            <div class="controls">
+                                <textarea id="content" data-ng-model="content" name="content">Mensaje</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="control-group">
+                            <label class="control-label" for="enviar"></label>
+                            <div class="controls">
+                                <button id="enviar" name="enviar" class="btn btn-success">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-switch-default>
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="title">Nombre completo</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="name" id="name" placeholder="Nombre completo" required>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="title">Email</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="email" id="email" placeholder="Email" required>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="title">Nombre de usuario</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="username" id="username" placeholder="Nombre de usuario" required>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="title">Contraseña</label>
+                            <div class="controls">
+                                <input type="password" data-ng-model="password" id="password" placeholder="Contraseña" required>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="title">Asunto</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+                            </div>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="control-group">
+                            <label class="control-label" for="content">Mensaje</label>
+                            <div class="controls">
+                                <textarea id="content" data-ng-model="content" name="content">Mensaje</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="control-group">
+                            <label class="control-label" for="enviar"></label>
+                            <div class="controls">
+                                <button id="enviar" name="enviar" class="btn btn-success">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
 </section>
 
