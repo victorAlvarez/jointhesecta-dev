@@ -2,7 +2,7 @@
     <div class="hero-unit">
         <img class="pull-right" src="../img/secta1.jpg">
 
-        <form class="form-horizontal" data-ng-submit="create()">
+        <form name="contact" class="form-horizontal" data-ng-submit="create()">
             <fieldset>
 
                 <!-- Form Name -->
@@ -15,7 +15,14 @@
                             <label class="control-label" for="title">Asunto</label>
 
                             <div class="controls">
-                                <input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+                                <input type="text" data-ng-model="title" name="asunto" id="title" placeholder="Title"
+                                       required>
+                                <img src="../img/correct.png" ng-show="contact.asunto.$valid" width="20">
+
+                                <div ng-show="contact.asunto.$dirty && contact.asunto.$invalid">
+                                    <span class="label label-important" ng-show="contact.asunto.$error.required">Tienes que rellenar este campo</span>
+                                </div>
+
                             </div>
                         </div>
 
@@ -24,15 +31,20 @@
                             <label class="control-label" for="content">Mensaje</label>
 
                             <div class="controls">
-                                <textarea id="content" data-ng-model="content" name="content">Mensaje</textarea>
+                                <textarea style="margin: 0px; height: 217px; width: 298px;" id="content" data-ng-model="content" ng-minlength="30" name="content" required>Mensaje</textarea>
+                                <img src="../img/correct.png" ng-show="contact.content.$valid" width="20">
+                                <span class="label label-important" ng-show="contact.content.$error.required && contact.content.$dirty">Tienes que rellenar este campo</span>
+                                <span class="label label-important" ng-show="!contact.content.$error.required && contact.content.$error.minlength
+                                 && contact.content.$dirty">El mensaje debe contener mas de 30 caracteres.</span>
                             </div>
                         </div>
 
                         <!-- Button -->
                         <div class="control-group">
                             <label class="control-label" for="enviar"></label>
+
                             <div class="controls">
-                                <button id="enviar" name="enviar" class="btn btn-success">Enviar</button>
+                                <button id="enviar" name="enviar" ng-disabled="contact.$invalid" class="btn btn-success">Enviar</button>
                             </div>
                         </div>
                     </div>
@@ -40,56 +52,115 @@
                         <!-- Text input-->
                         <div class="control-group">
                             <label class="control-label" for="title">Nombre completo</label>
+
                             <div class="controls">
-                                <input type="text" data-ng-model="name" id="name" placeholder="Nombre completo" required>
+                                <input type="text" data-ng-model="name" id="name" name="name" placeholder="Nombre completo"
+                                       required>
+                                <img src="../img/correct.png" ng-show="contact.name.$valid" width="20">
+                                <div ng-show="contact.name.$dirty && contact.name.$invalid">
+                                    <span class="label label-important" ng-show="contact.name.$error.required">Tienes que rellenar este campo</span>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="control-group">
                             <label class="control-label" for="title">Email</label>
+
                             <div class="controls">
-                                <input type="text" data-ng-model="email" id="email" placeholder="Email" required>
+                                <input type="email" data-ng-model="email" name="email" id="email" placeholder="Email" unique-email required>
+                                <img src="../img/correct.png" ng-show="contact.email.$valid" width="20">
+                                <div ng-show="contact.email.$dirty && contact.email.$invalid">
+                                    <span class="label label-important" ng-show="contact.email.$error.required">Tienes que rellenar este campo</span>
+                                    <span class="label label-important" ng-show="contact.email.$error.email">La dirección de email tiene que ser valida</span>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="control-group">
                             <label class="control-label" for="title">Nombre de usuario</label>
+
                             <div class="controls">
-                                <input type="text" data-ng-model="username" id="username" placeholder="Nombre de usuario" required>
+                                <input type="text" data-ng-model="username" id="username"
+                                       placeholder="Nombre de usuario" name="username" required
+                                       ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/">
+                                <img src="../img/correct.png" ng-show="contact.username.$valid" width="20">
+                                <div ng-show="contact.username.$dirty && contact.username.$invalid">
+                                    <span class="label label-important" ng-show="contact.username.$error.required">Tienes que rellenar este campo</span>
+                                    <span class="label label-important"
+                                          ng-show="!contact.username.$error.minLength && !contact.username.$error.maxLength &&
+                                          contact.username.$error.pattern && contact.username.$dirty">Debe comenzar con una letra y contener <br> letras y números solamente</span>
+                                    <span class="label label-important"
+                                          ng-show="!contact.username.$error.required && (contact.username.$error.minlength || contact.username.$error.maxlength)
+                                          && contact.username.$dirty">El nombre de usuario debe tener entre <br> 5 y 20 caracteres</span>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="control-group">
                             <label class="control-label" for="title">Contraseña</label>
+
                             <div class="controls">
-                                <input type="password" data-ng-model="password" id="password" placeholder="Contraseña" required>
+                                <input type="password" data-ng-model="password" id="password" name="password" placeholder="Contraseña"
+                                       ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required>
+                                <img src="../img/correct.png" ng-show="contact.password.$valid" width="20">
+                                <span class="label label-important" ng-show="contact.password.$error.required && contact.password.$dirty">Tienes que rellenar este campo</span>
+                                <span class="label label-important" ng-show="!contact.password.$error.required && (contact.password.$error.minlength ||
+                                contact.password.$error.maxlength) && contact.password.$dirty">La contraseña debe tener entre <br> 8 y 20 caracteres</span>
+                                <span class="label label-important" ng-show="!contact.password.$error.required && !contact.password.$error.minlength
+                                && !contact.password.$error.maxlength && contact.password.$error.pattern && contact.password.$dirty">
+                                    Debe contener letras en miniscula y mayúscula,<br> y un carácter no-alpha (un número o un símbolo)</span>
+                                <br />
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="title">Confirme su contraseña</label>
+
+                            <div class="controls">
+                                <input type="password" data-ng-model="password_c" id="password_c" name="password_c" placeholder="Confirma Contraseña" valid-password-c required>
+                                <img src="../img/correct.png" ng-show="contact.password_c.$valid" width="20">
+                                <span class="label label-important" ng-show="contact.password_c.$error.required && contact.password_c.$dirty">Por favor, confirme su contraseña</span>
+                                <span class="label label-important" ng-show="!contact.password_c.$error.required && contact.password_c.$error.noMatch && contact.password.$dirty">Las contraseñas no coinciden</span>
+                                <br />
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="control-group">
                             <label class="control-label" for="title">Asunto</label>
+
                             <div class="controls">
-                                <input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+                                <input type="text" data-ng-model="title" id="title" name="asunto" placeholder="Asunto" required>
+                                <img src="../img/correct.png" ng-show="contact.asunto.$valid" width="20">
+                                <div ng-show="contact.asunto.$dirty && contact.asunto.$invalid">
+                                    <span class="label label-important" ng-show="contact.asunto.$error.required">Tienes que rellenar este campo</span>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Textarea -->
                         <div class="control-group">
                             <label class="control-label" for="content">Mensaje</label>
+
                             <div class="controls">
-                                <textarea id="content" data-ng-model="content" name="content">Mensaje</textarea>
+                                <textarea style="margin: 0px; height: 217px; width: 298px;" id="content" data-ng-model="content" ng-minlength="30" name="content" required>Mensaje</textarea>
+                                <img src="../img/correct.png" ng-show="contact.content.$valid" width="20">
+                                <span class="label label-important" ng-show="contact.content.$error.required && contact.content.$dirty">Tienes que rellenar este campo</span>
+                                <span class="label label-important" ng-show="!contact.content.$error.required && contact.content.$error.minlength
+                                 && contact.content.$dirty">El mensaje debe contener mas de 30 caracteres.</span>
                             </div>
                         </div>
 
                         <!-- Button -->
                         <div class="control-group">
                             <label class="control-label" for="enviar"></label>
+
                             <div class="controls">
-                                <button id="enviar" name="enviar" class="btn btn-success">Enviar</button>
+                                <button id="enviar" ng-disabled="contact.$invalid" name="enviar" class="btn btn-success">Enviar</button>
                             </div>
                         </div>
                     </div>
