@@ -13,14 +13,16 @@ angular.module('jts.mensajes').controller('MensajesController', ['$scope', '$rou
         }
 
         var mensaje = new Mensajes({
-            title: this.title,
+            title: this.asunto,
             content: this.content
         });
         mensaje.$save(function(response) {
-            $location.path("mensajes/" + response._id);
+            $location.path("contact");
         });
 
-        this.title = "";
+        $scope.mensaje = 'ok';
+
+        this.asunto = "";
         this.content = "";
     };
 
