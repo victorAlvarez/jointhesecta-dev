@@ -64,7 +64,6 @@ module.exports = function(app, passport, auth) {
     var mensajes = require('../app/controllers/mensajes');
     app.get('/mensajes', mensajes.all);
     app.post('/mensajes', auth.requiresLogin, mensajes.create);
-    app.get('/mensajes/ok', mensajes.create);
     app.get('/mensajes/:mensajeId', mensajes.show);
     app.put('/mensajes/:mensajeId', auth.requiresLogin, auth.mensaje.hasAuthorization, mensajes.update);
     app.del('/mensajes/:mensajeId', auth.requiresLogin, auth.mensaje.hasAuthorization, mensajes.destroy);
