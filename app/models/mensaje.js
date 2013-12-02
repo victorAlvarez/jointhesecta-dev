@@ -14,6 +14,10 @@ var MensajeSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    receptor: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    },
     title: {
         type: String,
         default: '',
