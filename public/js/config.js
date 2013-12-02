@@ -5,6 +5,9 @@ window.app.config(['$routeProvider',
             when('/mensajes', {
                 templateUrl: 'views/mensajes/list.html'
             }).
+            when('/mensajes/:receptor/mis', {
+                templateUrl: 'views/mensajes/mis.html'
+            }).
             when('/mensajes/create', {
                 templateUrl: 'views/mensajes/create.html'
             }).

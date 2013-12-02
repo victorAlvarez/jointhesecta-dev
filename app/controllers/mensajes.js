@@ -96,3 +96,30 @@ exports.all = function(req, res) {
         }
     });
 };
+
+/**
+ * List of mensaje
+ */
+exports.mis = function(req, res) {
+    if (req.user == undefined) {
+        // 'No puedes ver los mensajes sin acceder'
+        return res.send('users/signup', {
+            errors: "No puedes ver los mensajes sin acceder"
+        });
+    } else {
+        var user = req.user;
+    }
+
+    console.log("{ 'receptor': '529c1ab41b225a9019000004' }");
+    console.log("{ 'receptor': '"+user._id+"' }");
+
+    Mensaje.find().sort('-created').populate('user', 'name username').exec(function(err, mensaje) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            res.jsonp(mensaje);
+        }
+    });
+};

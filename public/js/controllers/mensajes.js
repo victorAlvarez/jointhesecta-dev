@@ -13,9 +13,12 @@ angular.module('jts.mensajes').controller('MensajesController', ['$scope', '$rou
         }
 
         var mensaje = new Mensajes({
+          //  receptor: this.receptor,
+            receptor: "529500e6e14c9f8c17000002",
             title: this.asunto,
             content: this.content
         });
+
         mensaje.$save(function(response) {
             $location.path("contact");
         });
@@ -50,6 +53,14 @@ angular.module('jts.mensajes').controller('MensajesController', ['$scope', '$rou
 
     $scope.find = function() {
         Mensajes.query(function(mensajes) {
+            $scope.mensajes = mensajes;
+        });
+    };
+
+    $scope.mis = function() {
+        Mensajes.get({
+            receptor: $routeParams.receptor
+        }, function(mensajes) {
             $scope.mensajes = mensajes;
         });
     };
