@@ -1,21 +1,55 @@
 <section data-ng-controller="MensajesController">
 	<form class="form-horizontal" data-ng-submit="create()">
-		<div class="control-group">
-			<label class="control-label" for="title">Title</label>
-			<div class="controls">
-				<input type="text" data-ng-model="title" id="title" placeholder="Title" required>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="content">Content</label>
-			<div class="controls">
-				<textarea data-ng-model="content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls">
-				<input type="submit" class="btn">
-			</div>
-		</div>
+
+        <div class="control-group">
+            <label class="control-label" for="title">Receptor</label>
+
+            <div class="controls">
+                <input type="text" ng-model="receptor" name="receptor" id="receptor" value="529c1ab41b225a9019000004">
+                <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="title">Asunto</label>
+
+            <div class="controls">
+                <input type="text" data-ng-model="asunto" name="asunto" id="asunto" placeholder="Title"
+                       required>
+                <img src="../img/correct.png" ng-show="contact.asunto.$valid" width="20">
+
+                <div ng-show="contact.asunto.$dirty && contact.asunto.$invalid">
+                    <span class="label label-important" ng-show="contact.asunto.$error.required">Tienes que rellenar este campo</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="control-group">
+            <label class="control-label" for="content">Mensaje</label>
+
+            <div class="controls">
+                <textarea style="margin: 0px; height: 217px; width: 298px;" id="content"
+                          data-ng-model="content" ng-minlength="30" name="content"
+                          required>Mensaje</textarea>
+                <img src="../img/correct.png" ng-show="contact.content.$valid" width="20">
+                                <span class="label label-important"
+                                      ng-show="contact.content.$error.required && contact.content.$dirty">Tienes que rellenar este campo</span>
+                                <span class="label label-important" ng-show="!contact.content.$error.required && contact.content.$error.minlength
+                                 && contact.content.$dirty">El mensaje debe contener mas de 30 caracteres.</span>
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+            <label class="control-label" for="enviar"></label>
+
+            <div class="controls">
+                <button id="enviar" name="enviar" ng-disabled="contact.$invalid" class="btn btn-success">
+                    Enviar
+                </button>
+            </div>
+        </div>
 	</form>
 </section>

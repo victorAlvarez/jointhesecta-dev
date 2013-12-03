@@ -18,7 +18,7 @@ var MensajeSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
-    title: {
+    asunto: {
         type: String,
         default: '',
         trim: true
@@ -37,9 +37,9 @@ var MensajeSchema = new Schema({
 /**
  * Validations
  */
-MensajeSchema.path('title').validate(function(title) {
-    return title.length;
-}, 'Title cannot be blank');
+MensajeSchema.path('asunto').validate(function(asunto) {
+    return asunto.length;
+}, 'El asunto no puede estar vacio');
 
 /**
  * Statics

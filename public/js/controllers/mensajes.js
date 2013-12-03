@@ -17,7 +17,7 @@ angular.module('jts.mensajes').controller('MensajesController', ['$scope', '$rou
 
         var mensaje = new Mensajes({
             receptor: this.receptor,
-            title: this.asunto,
+            asunto: this.asunto,
             content: this.content
         });
 

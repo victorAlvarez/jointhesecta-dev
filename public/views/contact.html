@@ -19,14 +19,7 @@
             <div ng-switch="!!global.user">
                 <div ng-switch-when="true">
                     <form name="contact" class="form-horizontal" data-ng-submit="create()">
-                        <div class="control-group">
-                            <label class="control-label" for="title">Receptor</label>
-
-                            <div class="controls">
-                                <input type="text" ng-model="receptor" name="receptor" id="receptor" value="529c1ab41b225a9019000004">
-                                <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8">
-                            </div>
-                        </div>
+                       <input type="hidden" data-ng-model="receptor" name="receptor" id="receptor" value="529c1ab41b225a9019000004">
 
                         <!-- Text input-->
                         <div class="control-group">
