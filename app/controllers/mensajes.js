@@ -98,7 +98,7 @@ exports.all = function(req, res) {
 };
 
 /**
- * Listdo de mis mensajes
+ * Listado de mis mensajes
  */
 exports.mis = function(req, res) {
     if (req.user == undefined) {
