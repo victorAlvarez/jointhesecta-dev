@@ -23,12 +23,9 @@
                             <label class="control-label" for="title">Receptor</label>
 
                             <div class="controls">
-                                <input type="text" data-ng-model="receptor" name="receptor" id="receptor" value="529c1ab41b225a9019000004" required>
-                                <pre>Receptor: {{receptor| json}}</pre>
+                                <input type="text" ng-model="receptor" name="receptor" id="receptor" value="529c1ab41b225a9019000004">
                                 <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8">
-                                <pre>Selected: {{selected| json}}</pre>
                             </div>
-                            <pre>states: {{states| json}}</pre>
                         </div>
 
                         <!-- Text input-->
