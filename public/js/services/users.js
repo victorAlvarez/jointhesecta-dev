@@ -4,7 +4,7 @@
 
 angular.module('jts.users').factory('Users', ['$resource',
     function($resource){
-        return $resource('mismensajes/:receptor', {}, {
-            query: {method:'GET', params:{receptor:'@_id'}, isArray:true}
+        return $resource('users/:email/validate2', {}, {
+            query: {method:'GET', params:{email:'@email'}, isArray:true}
         });
     }]);
