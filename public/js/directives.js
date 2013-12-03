@@ -8,9 +8,9 @@ window.angular.module('jts.directives', [])
                     ctrl.$setValidity('noMatch', !noMatch)
                 })
             }
-        }
+        };
     })
-    /*.directive('uniqueEmail', ['Users', function (Users) {
+    .directive('uniqueEmail', ['Users', function (Users) {
         return {
             require:'ngModel',
             restrict:'A',
@@ -22,8 +22,7 @@ window.angular.module('jts.directives', [])
                 ctrl.$parsers.push(function (viewValue) {
 
                     if (viewValue) {
-                        Mensajes.create();
-                        Global.query({email:viewValue}, function (users) {
+                        Users.query({email:viewValue}, function (users) {
                             if (users.length === 0) {
                                 ctrl.$setValidity('uniqueEmail', true);
                             } else {
@@ -35,5 +34,5 @@ window.angular.module('jts.directives', [])
                 });
             }
         };
-    }])*/
+    }]);
 
