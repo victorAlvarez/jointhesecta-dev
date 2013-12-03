@@ -11,3 +11,10 @@ angular.module('jts.mensajes').factory("Mensajes", ['$resource', function ($reso
             }
         });
 }]);
+
+angular.module('jts.mensajes').factory("MisMensajes", ['$resource',
+    function($resource){
+        return $resource('mismensajes/:receptor', {}, {
+            query: {method:'GET', params:{receptor:'@_id'}, isArray:true}
+        });
+}]);

@@ -98,7 +98,7 @@ exports.all = function(req, res) {
 };
 
 /**
- * List of mensaje
+ * Listdo de mis mensajes
  */
 exports.mis = function(req, res) {
     if (req.user == undefined) {
@@ -110,10 +110,9 @@ exports.mis = function(req, res) {
         var user = req.user;
     }
 
-    console.log("{ 'receptor': '529c1ab41b225a9019000004' }");
     console.log("{ 'receptor': '"+user._id+"' }");
 
-    Mensaje.find().sort('-created').populate('user', 'name username').exec(function(err, mensaje) {
+    Mensaje.find({receptor: user._id }).sort('-created').populate('user', 'name username').exec(function(err, mensaje) {
         if (err) {
             res.render('error', {
                 status: 500

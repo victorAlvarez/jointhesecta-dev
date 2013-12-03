@@ -1,4 +1,4 @@
-angular.module('jts.mensajes').controller('MensajesController', ['$scope', '$routeParams', '$location', 'Global', 'Mensajes', function ($scope, $routeParams, $location, Global, Mensajes) {
+angular.module('jts.mensajes').controller('MensajesController', ['$scope', '$routeParams', '$location', 'Global', 'Mensajes','MisMensajes', function ($scope, $routeParams, $location, Global, Mensajes, MisMensajes) {
     $scope.global = Global;
 
     $scope.create = function() {
@@ -58,7 +58,7 @@ angular.module('jts.mensajes').controller('MensajesController', ['$scope', '$rou
     };
 
     $scope.mis = function() {
-        Mensajes.get({
+        MisMensajes.query({
             receptor: $routeParams.receptor
         }, function(mensajes) {
             $scope.mensajes = mensajes;
