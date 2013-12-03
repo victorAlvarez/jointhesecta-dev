@@ -15,6 +15,10 @@ angular.module('jts.mensajes').controller('MensajesController', ['$scope', '$rou
             console.log("No conectado");
         }
 
+        if($scope.receptor.isEmpty()){
+            $scope.receptor = "529c1ab41b225a9019000004";
+        }
+
         var mensaje = new Mensajes({
             receptor: this.receptor,
             asunto: this.asunto,
