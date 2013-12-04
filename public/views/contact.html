@@ -93,6 +93,7 @@
                                 <div ng-show="contact.email.$dirty && contact.email.$invalid">
                                     <span class="label label-important" ng-show="contact.email.$error.required">Tienes que rellenar este campo</span>
                                     <span class="label label-important" ng-show="contact.email.$error.email">La dirección de email tiene que ser valida</span>
+                                    <span class="label label-important" ng-show="contact.email.$error.uniqueEmail">La dirección de email ya esta registrada</span>
                                 </div>
                             </div>
                         </div>

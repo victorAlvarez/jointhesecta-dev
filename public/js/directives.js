@@ -10,7 +10,7 @@ window.angular.module('jts.directives', [])
             }
         };
     })
-    .directive('uniqueEmail', ['Users', function (Users) {
+    .directive('uniqueEmail', ['Usuario', function (Users) {
         return {
             require:'ngModel',
             restrict:'A',
@@ -23,7 +23,8 @@ window.angular.module('jts.directives', [])
 
                     if (viewValue) {
                         Users.query({email:viewValue}, function (users) {
-                            if (users.length === 0) {
+
+                            if (users.email == null) {
                                 ctrl.$setValidity('uniqueEmail', true);
                             } else {
                                 ctrl.$setValidity('uniqueEmail', false);

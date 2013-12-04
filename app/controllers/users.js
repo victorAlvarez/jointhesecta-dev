@@ -102,13 +102,36 @@ exports.user = function (req, res, next, id) {
         });
 };
 
-exports.validate2 = function (req, res, next, email) {
-    User.findOne({email: email})
+exports.validate2 = function (req, res, next) {
+
+    User.findOne({email: req.params.email})
+        .exec(function (err, email) {
+            if (err) {
+                res.render('error', {
+                    status: 500
+                });
+            } else {
+                var email = email;
+                if (email == null) {
+                    email = {'email' : null};
+                    res.jsonp(email);
+                } else {
+                    res.jsonp(email);
+                }
+            }
+        });
+
+};
+
+exports.obtenerEmail = function (req, res, next, id) {
+    User
+        .findOne({
+            email: id
+        })
         .exec(function (err, user) {
             if (err) return next(err);
             if (!user) return next(new Error('Failed to load User ' + id));
             req.profile = user;
             next();
         });
-
 };
