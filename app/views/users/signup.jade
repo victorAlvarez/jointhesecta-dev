@@ -1,31 +1,63 @@
 extends auth
 
 block auth
-    form.signup.form-horizontal(action="/users", method="post")
+    form.signup.form-horizontal(name='signup', action="/users", method="post")
         h2(style='font: 1.833em/1 \'FS Albert Pro Web Light\',Helvetica,Arial,sans-serif; margin-bottom: 20px;') Regístrate
         .control-group
             label.control-label(for='name') Nombre completo
             .controls
-                input#name(type='text', name="name", placeholder='Nombre completo', value=user.name)
-
+                input#name(type='text', name="name", ng-model='name', placeholder='Nombre completo', value=user.name, required)
+                img(src='../img/correct.png', ng-show='signup.name.$valid', width='20')
+                div(ng-show='signup.name.$dirty && signup.name.$invalid')
+                    span.label.label-important(ng-show='signup.name.$error.required') Tienes que rellenar este campo
         .control-group
             label.control-label(for='email') Email
             .controls
-                input#email(type='text', name="email", placeholder='Email', value=user.email)
-
+                input#email(type='email', name="email", ng-model='email', placeholder='Email', value=user.email, unique-email, required)
+                img(src='../img/correct.png', ng-show='signup.email.$valid', width='20')
+                div(ng-show='signup.email.$dirty && signup.email.$invalid')
+                    span.label.label-important(ng-show='signup.email.$error.required') Tienes que rellenar este campo
+                    span.label.label-important(ng-show='signup.email.$error.email') La dirección de email tiene que ser valida
+                    span.label.label-important(ng-show='signup.email.$error.uniqueEmail')
+                        | La dirección de email ya esta registrada.
+                        br
+                        | Si has olvidado tu contraseña puedes recuperarla
+                        br
+                        a(href='#') aquí
         .control-group
             label.control-label(for='username') Nombre de usuario
             .controls
-                input#username(type='text', name="username", placeholder='Nombre de usuario', value=user.username)
-
+                input#username(type='text', name="username", ng-model='username', placeholder='Nombre de usuario',
+                value=user.username, ng-minlength="5", ng-maxlength="20", ng-pattern="/^[A-z][A-z0-9]*$/", required)
+                img(src='../img/correct.png', ng-show='signup.username.$valid', width='20')
+                div(ng-show='signup.username.$dirty && signup.username.$invalid')
+                    span.label.label-important(ng-show='signup.username.$error.required') Tienes que rellenar este campo
+                    span.label.label-important(ng-show='!signup.username.$error.minLength && !signup.username.$error.maxLength && signup.username.$error.pattern && signup.username.$dirty')
+                        | Debe comenzar con una letra y contener
+                        br
+                        | letras y números solamente
+                    span.label.label-important(ng-show='!signup.username.$error.required && (signup.username.$error.minlength || signup.username.$error.maxlength) && signup.username.$dirty')
+                        | El nombre de usuario debe tener entre
+                        br
+                        | 5 y 20 caracteres
         .control-group
             label.control-label(for='password') Contraseña
             .controls
-                input#password(type='password', name="password", placeholder='Contraseña')
-
+                input#password(type='password', name="password", ng-model='password', ng-minlength="8", ng-maxlength="20"
+                ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/", placeholder='Contraseña', required)
+                img(src='../img/correct.png', ng-show='signup.password.$valid', width='20')
+                span.label.label-important(ng-show='signup.password.$error.required && signup.password.$dirty') Tienes que rellenar este campo
+                span.label.label-important(ng-show='!signup.password.$error.required && (signup.password.$error.minlength || signup.password.$error.maxlength) && signup.password.$dirty')
+                    | La contraseña debe tener entre
+                    br
+                    | 8 y 20 caracteres
+                span.label.label-important(ng-show='!signup.password.$error.required && !signup.password.$error.minlength && !signup.password.$error.maxlength && signup.password.$error.pattern && signup.password.$dirty')
+                    | Debe contener letras en miniscula y mayúscula,
+                    br
+                    | y un carácter no-alpha (un número o un símbolo)
         .control-group
             .controls
-                button.btn.btn-primary(type='submit') Regístrate
+                button.btn.btn-primary(type='submit', ng-disabled="signup.$invalid") Regístrate
                 &nbsp;
                 | o&nbsp;
                 a.show-signup(href="/signin") Accede
