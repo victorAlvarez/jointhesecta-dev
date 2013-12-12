@@ -122,3 +122,21 @@ exports.mis = function(req, res) {
         }
     });
 };
+
+exports.userMessage = function (req, res) {
+
+    if (req.data.id == null) {
+        req.io.emit('countMessage', {mensaje: 0});
+    } else {
+        Mensaje.find({receptor: req.data.id }).count().exec(function(err, mensaje) {
+            if (err) {
+                res.render('error', {
+                    status: 500
+                });
+            } else {
+                var socketIO = global.socketIO;
+                socketIO.sockets.in(req.data.id).emit('countMessage', {mensaje: mensaje});
+            }
+        });
+    }
+};

@@ -8,3 +8,10 @@ angular.module('jts.users').factory('Usuario', ['$resource',
             query: {method:'GET', params:{email:'@email'}, isArray:false}
         });
     }]);
+
+angular.module('jts.users').factory('Receptor', ['$resource',
+    function($resource){
+        return $resource('receptor/:buscarEmail', {}, {
+            query: {method:'GET', params:{buscarEmail:'@buscarEmail'}, isArray:true}
+        });
+    }]);

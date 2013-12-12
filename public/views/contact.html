@@ -14,12 +14,25 @@
             </div>
         </div>
         <div ng-switch-when="false">
-
-
             <div ng-switch="!!global.user">
                 <div ng-switch-when="true">
                     <form name="contact" class="form-horizontal" data-ng-submit="create()">
                         <!-- Text input-->
+                        <div ng-switch="global.user.username">
+                            <div ng-switch-when="admin">
+                                <div class="control-group">
+                                    <label class="control-label" for="title">Receptor</label>
+
+                                    <div class="controls">
+                                        <input type="text" ng-model="selected" typeahead="user for user in usuarios | filter:$viewValue | limitTo:8" receptor-email>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-switch-default>
+                                <input type="hidden" data-ng-model="receptor" name="receptor" id="receptor" >
+                            </div>
+                        </div>
+
                         <div class="control-group">
                             <label class="control-label" for="title">Asunto</label>
 

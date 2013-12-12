@@ -3,7 +3,7 @@
 		<li data-ng-repeat="mensaje in mensajes">
 			<span>{{mensaje.created | date:'medium'}}</span> /
 			<span>{{mensaje.user.name}}</span>
-			<h2><a data-ng-href="#!/mensajes/{{mensaje._id}}">{{mensaje.title}}</a></h2>
+			<h2><a data-ng-href="#!/mensajes/{{mensaje._id}}">{{mensaje.asunto}}</a></h2>
 			<div>{{mensaje.content}}</div>
 		</li>
 	</ul>

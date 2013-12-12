@@ -23,8 +23,8 @@ var db = mongoose.connect(config.db);
 
 //Bootstrap models
 var models_path = __dirname + '/app/models';
-var walk = function(path) {
-    fs.readdirSync(path).forEach(function(file) {
+var walk = function (path) {
+    fs.readdirSync(path).forEach(function (file) {
         var newPath = path + '/' + file;
         var stat = fs.statSync(newPath);
         if (stat.isFile()) {
@@ -51,8 +51,9 @@ require('./config/routes')(app, passport, auth);
 
 //Start the app by listening on <port>
 var port = process.env.PORT || config.port;
-app.listen(port);
+var server = app.listen(port);
 console.log('Express app started on port ' + port);
+require('./config/socket-io')(app, server);
 
 //Initializing logger
 logger.init(app, passport, mongoose);

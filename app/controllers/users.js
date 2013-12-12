@@ -4,6 +4,7 @@
 var mongoose = require('mongoose'),
     User = mongoose.model('User');
 
+var clients = {};
 /**
  * Auth callback
  */
@@ -43,6 +44,8 @@ exports.signout = function (req, res) {
  * Session
  */
 exports.session = function (req, res) {
+    var socketIO = global.socketIO;
+    socketIO.emit('adduser', {id: req.user._id});
     res.redirect('/');
 };
 
@@ -123,6 +126,20 @@ exports.validate2 = function (req, res, next) {
 
 };
 
+exports.searchEmail = function (req, res, next) {
+
+    User.find({email: /.* req.params.email .*/}, {email: 1})
+        .exec(function (err, email) {
+            if (err) {
+                res.render('error', {
+                    status: 500
+                });
+            } else {
+                res.jsonp(email);
+            }
+        });
+}
+
 exports.obtenerEmail = function (req, res, next, id) {
     User
         .findOne({
@@ -134,4 +151,8 @@ exports.obtenerEmail = function (req, res, next, id) {
             req.profile = user;
             next();
         });
+};
+
+exports.probando = function (req, res, next, id) {
+    req.io.emit('get-feelings');
 };

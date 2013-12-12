@@ -13,15 +13,24 @@ module.exports = function(app, passport, auth) {
         failureFlash: 'Email o password incorrectos.'
     }), users.session);
 
+    /*app.get('/users/session2', function (req, res) {
+        req.io.route('session2');
+    })*/
+
+    //app.io.route('session2', users.session2);
+
     app.get('/users/me', users.me);
     app.get('/users/:userId', users.show);
     app.get('/usuario/:email', users.validate2);
+    app.get('/receptor/:buscarEmail', users.searchEmail);
 
     //Setting the facebook oauth routes
     app.get('/auth/facebook', passport.authenticate('facebook', {
         scope: ['email', 'user_about_me'],
         failureRedirect: '/signin'
     }), users.signin);
+
+    //app.io.route('probando', users.probando);
 
     app.get('/auth/facebook/callback', passport.authenticate('facebook', {
         failureRedirect: '/signin'
@@ -69,6 +78,8 @@ module.exports = function(app, passport, auth) {
     app.get('/mismensajes/:receptor', mensajes.mis);
     app.put('/mensajes/:mensajeId', auth.requiresLogin, auth.mensaje.hasAuthorization, mensajes.update);
     app.del('/mensajes/:mensajeId', auth.requiresLogin, auth.mensaje.hasAuthorization, mensajes.destroy);
+
+    //app.io.route('userMessage', mensajes.userMessage, auth.requiresLogin);
 
     //Finish with setting up the mensajeId param
     app.param('mensajeId', mensajes.mensaje);
