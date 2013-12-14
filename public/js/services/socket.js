@@ -1,7 +1,4 @@
-/**
- * Created by Victor-BookPro on 08/12/13.
- */
-/***
+
 angular.module('jts.socket').factory('socket', function ($rootScope) {
     var socket = io.connect();
     return {
@@ -25,4 +22,3 @@ angular.module('jts.socket').factory('socket', function ($rootScope) {
         }
     };
 });
-**/

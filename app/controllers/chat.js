@@ -50,15 +50,13 @@ var userNames = (function () {
 }());
 
  exports.chat = function(req, res){
-
+     console.log("Renderizamos chat");
+     res.render('chat/chat',{
+         title: 'CHAT'
+     });
  };
 
 exports.iniciar = function(req, res) {
-    console.log("Renderizamos chat");
-    res.render('chat/chat',{
-        title: 'CHAT'
-    });
-
     console.log("Entramos iniciar");
     var socketIO = global.socketIO;
     var name = userNames.getGuestName();
@@ -73,14 +71,14 @@ exports.iniciar = function(req, res) {
 
     // notify other clients that a new user has joined
     // socketIO.broadcast.emit('user:join', {
-    socketIO.emit('user:join', {
+    socketIO.sockets.emit('user:join', {
         name: name
     });
 
     // broadcast a user's message to other users
     socketIO.on('send:message', function (data) {
         console.log("Entramos send:message");
-        socketIO.emit('send:message', {
+        socketIO.sockets.emit('send:message', {
         //socketIO.broadcast.emit('send:message', {
             user: name,
             text: data.message
@@ -96,7 +94,7 @@ exports.iniciar = function(req, res) {
             name = data.name;
 
             //socketIO.broadcast.emit('change:name', {
-            socketIO.emit('change:name', {
+            socketIO.sockets.emit('change:name', {
                 oldName: oldName,
                 newName: name
             });
@@ -110,10 +108,9 @@ exports.iniciar = function(req, res) {
     // clean up when a user leaves, and broadcast it to other users
     socketIO.on('disconnect', function () {
         //socketIO.broadcast.emit('user:left', {
-        socketIO.emit('user:left', {
+        socketIO.sockets.emit('user:left', {
             name: name
         });
         userNames.free(name);
     });
-
 };

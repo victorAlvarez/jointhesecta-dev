@@ -1,24 +1,23 @@
-<section ng-controller="ChatController">
-<div class="col">
+<section data-ng-controller="ChatController" data-ng-init="iniciar()" >
+    <div class="clr">
+        <h3>Bienvenido {{name}}</h3>
+    </div>
+    <div class="col">
         <h3>Messages</h3>
         <div class="overflowable">
-            <p ng-repeat="message in messages">: </p>
+            <p data-ng-repeat="message in messages">: </p>
         </div>
     </div>
     <div class="col">
         <h3>Users</h3>
         <div class="overflowable">
-            <p ng-repeat="user in users"> </p>
+            <p data-ng-repeat="user in users"> </p>
         </div>
     </div>
     <div class="clr">
-        <form ng-submit="sendMessage()">Message:
-            <input size="60" ng-model="message"/>
+        <form data-ng-submit="sendMessage()">Message:
+            <input size="60" data-ng-model="message"/>
             <input type="submit" value="Send"/>
         </form>
-    </div>
-    <div class="clr">
-        <h3>Change your name</h3>
-        <p>Your current user name is </p>
     </div>
 </section>

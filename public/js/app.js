@@ -1,4 +1,4 @@
-window.app = angular.module('jts', ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.route', 'jts.system', 'jts.mensajes', 'jts.chat' , 'jts.users', 'jts.directives']);
+window.app = angular.module('jts', ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.route', 'jts.system', 'jts.socket' ,'jts.mensajes', 'jts.chat' , 'jts.users', 'jts.directives']);
 
 angular.module('jts.system', []);
 angular.module('jts.mensajes', []);

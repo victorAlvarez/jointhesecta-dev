@@ -106,7 +106,6 @@ exports.user = function (req, res, next, id) {
 };
 
 exports.validate2 = function (req, res, next) {
-
     User.findOne({email: req.params.email})
         .exec(function (err, email) {
             if (err) {
@@ -127,7 +126,6 @@ exports.validate2 = function (req, res, next) {
 };
 
 exports.searchEmail = function (req, res, next) {
-
     User.find({email: /.* req.params.email .*/}, {email: 1})
         .exec(function (err, email) {
             if (err) {
