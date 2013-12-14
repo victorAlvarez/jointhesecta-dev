@@ -18,3 +18,4 @@ angular.module('jts.mensajes').factory("MisMensajes", ['$resource',
             query: {method:'GET', params:{receptor:'@_id'}, isArray:true}
         });
 }]);
+

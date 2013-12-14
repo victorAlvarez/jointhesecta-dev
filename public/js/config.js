@@ -23,6 +23,9 @@ window.app.config(['$routeProvider',
             when('/modules', {
                 templateUrl: 'views/modules.html'
             }).
+            when('/modules/chat', {
+                templateUrl: 'views/modulos/chat.html'
+            }).
             when('/hosting', {
                 templateUrl: 'views/hosting.html'
             }).
@@ -31,6 +34,9 @@ window.app.config(['$routeProvider',
             }).
             when('/whoweare', {
                 templateUrl: 'views/whoweare.html'
+            }).
+            when('/modulos/chat', {
+                templateUrl: 'views/modulos/chat.html'
             }).
             when('/', {
                 templateUrl: 'views/index.html'

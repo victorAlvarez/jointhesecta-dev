@@ -1,7 +1,5 @@
-angular.module('jts.system').controller('HeaderController', ['$scope', '$routeParams', '$location',
-    'Global', 'socket', 'Mensajes',
-    function ($scope, $routeParams, $location, Global, socket, Mensajes) {
-        $scope.global = Global;
+angular.module('jts.system').controller('HeaderController', ['$scope', 'Global', function ($scope, Global) {
+    $scope.global = Global;
 
         $scope.menu = [
             {
