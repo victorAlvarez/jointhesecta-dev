@@ -88,4 +88,8 @@ module.exports = function(app, passport, auth) {
     var index = require('../app/controllers/index');
     app.get('/', index.render);
 
+    /** CHAT **/
+    var chat = require('../app/controllers/chat');
+    app.get('/chat',chat.iniciar);
+
 };
