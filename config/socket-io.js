@@ -5,17 +5,19 @@
 module.exports = function (app, server) {
     var socketIO = require('socket.io').listen(server);
 
-    global.socketIO = socketIO;
-
     var idusuarios = {};
 
-    socketIO.sockets.on('connection', function (socket) {
+    global.io = socketIO;
+    io.sockets.on('connection', function (socket) {
+        global.socket = socket;
+
         socket.on('adduser', function(username){
+            console.log('usuarios: %j' + JSON.stringify(idusuarios, null, 2));
             socket.username = username;
             idusuarios[username] = username;
             socket.join(username);
-
-            console.log('usuarios: ' + idusuarios);
         });
     });
+
+
 }

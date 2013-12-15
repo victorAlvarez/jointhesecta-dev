@@ -1,12 +1,15 @@
-angular.module('jts.chat').controller('ChatController', ['$scope', '$routeParams', '$location', 'Global', 'socket', function ($scope, $routeParams, $location, Global, socket ) {
+angular.module('jts.chat').controller('ChatController', ['$scope', '$http', '$routeParams', '$location', 'Global', 'socket', function ($scope, $http, $routeParams, $location, Global, socket ) {
     $scope.global = Global;
+
     $scope.messages = [];
     $scope.users = [];
-    $scope.name = "VACIO";
+
+    socket.on('connect', function () {
+        socket.emit('adduser', $scope.global._id);
+    });
 
     socket.on('init', function (data) {
         console.log("Entramos init");
-        console.log("usuario join:"+data.name);
         $scope.name = data.name;
         $scope.users = data.users;
     });
@@ -60,6 +63,8 @@ angular.module('jts.chat').controller('ChatController', ['$scope', '$routeParams
     };
 
     $scope.iniciar = function(){
-
+        $http.get('/chat').success(function (data) {
+            $scope.name = data
+        });
     };
 }]);

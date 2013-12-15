@@ -44,8 +44,11 @@ exports.signout = function (req, res) {
  * Session
  */
 exports.session = function (req, res) {
-    var socketIO = global.socketIO;
-    socketIO.emit('adduser', {id: req.user._id});
+    var io = global.io;
+    var user = req.user;
+    io.on('connect', function () {
+        io.emit('adduser', {id: user._id});
+    });
     res.redirect('/');
 };
 
@@ -115,7 +118,7 @@ exports.validate2 = function (req, res, next) {
             } else {
                 var email = email;
                 if (email == null) {
-                    email = {'email' : null};
+                    email = {'email': null};
                     res.jsonp(email);
                 } else {
                     res.jsonp(email);

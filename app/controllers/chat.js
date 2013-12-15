@@ -1,5 +1,3 @@
-
-// Keep track of which names are used so that there are no duplicates
 var userNames = (function () {
     var names = {};
 
@@ -49,52 +47,56 @@ var userNames = (function () {
     };
 }());
 
- exports.chat = function(req, res){
-     console.log("Renderizamos chat");
-     res.render('chat/chat',{
-         title: 'CHAT'
-     });
- };
+exports.chat = function (req, res) {
+    console.log("Renderizamos chat");
+    res.render('chat/chat', {
+        title: 'CHAT'
+    });
+};
 
-exports.iniciar = function(req, res) {
+exports.iniciar = function (req, res) {
     console.log("Entramos iniciar");
-    var socketIO = global.socketIO;
-    var name = userNames.getGuestName();
+    var io = global.io;
+    var socket = global.socket;
+    var name = req.user.name;
 
-    console.log("Nombre: " + name);
+    var idusuarios = {};
+
+    socket.on('adduser', function (username) {
+        console.log('usuarios: %j' + JSON.stringify(idusuarios, null, 2));
+        socket.username = username;
+        idusuarios[username] = username;
+        socket.join(username);
+    });
 
     // send the new user their name and a list of users
-    socketIO.emit('init', {
+    socket.emit('init', {
         name: name,
         users: userNames.get()
     });
 
     // notify other clients that a new user has joined
-    // socketIO.broadcast.emit('user:join', {
-    socketIO.sockets.emit('user:join', {
+    io.sockets.emit('user:join', {
         name: name
     });
 
     // broadcast a user's message to other users
-    socketIO.on('send:message', function (data) {
-        console.log("Entramos send:message");
-        socketIO.sockets.emit('send:message', {
-        //socketIO.broadcast.emit('send:message', {
+    socket.on('send:message', function (data) {
+        socket.broadcast.emit('send:message', {
             user: name,
             text: data.message
         });
     });
 
     // validate a user's name change, and broadcast it on success
-    socketIO.on('change:name', function (data, fn) {
+    socket.on('change:name', function (data, fn) {
         if (userNames.claim(data.name)) {
             var oldName = name;
             userNames.free(oldName);
 
             name = data.name;
 
-            //socketIO.broadcast.emit('change:name', {
-            socketIO.sockets.emit('change:name', {
+            socket.broadcast.emit('change:name', {
                 oldName: oldName,
                 newName: name
             });
@@ -106,11 +108,14 @@ exports.iniciar = function(req, res) {
     });
 
     // clean up when a user leaves, and broadcast it to other users
-    socketIO.on('disconnect', function () {
-        //socketIO.broadcast.emit('user:left', {
-        socketIO.sockets.emit('user:left', {
+    socket.on('disconnect', function () {
+        socket.broadcast.emit('user:left', {
             name: name
         });
         userNames.free(name);
     });
+
+    console.log(name);
+
+    res.jsonp(name);
 };

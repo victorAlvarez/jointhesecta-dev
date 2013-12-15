@@ -8,8 +8,8 @@ var mongoose = require('mongoose'),
 /**
  * Find mensaje by id
  */
-exports.mensaje = function(req, res, next, id) {
-    Mensaje.load(id, function(err, mensaje) {
+exports.mensaje = function (req, res, next, id) {
+    Mensaje.load(id, function (err, mensaje) {
         if (err) return next(err);
         if (!mensaje) return next(new Error('Failed to load mensaje ' + id));
         req.mensaje = mensaje;
@@ -20,17 +20,21 @@ exports.mensaje = function(req, res, next, id) {
 /**
  * Create a mensaje
  */
-exports.create = function(req, res) {
+exports.create = function (req, res) {
     var mensaje = new Mensaje(req.body);
     mensaje.user = req.user;
 
-    mensaje.save(function(err) {
+
+    mensaje.save(function (err) {
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,
                 mensaje: mensaje
             });
         } else {
+            var iduser = mensaje._id;
+            var socketIO = global.socketIO;
+            socketIO.sockets.in(iduser).emit('countMessage', {mensaje: mensaje});
             res.jsonp(mensaje);
         }
     });
@@ -39,12 +43,12 @@ exports.create = function(req, res) {
 /**
  * Update a mensaje
  */
-exports.update = function(req, res) {
+exports.update = function (req, res) {
     var mensaje = req.mensaje;
 
     mensaje = _.extend(mensaje, req.body);
 
-    mensaje.save(function(err) {
+    mensaje.save(function (err) {
         res.jsonp(mensaje);
     });
 };
@@ -52,10 +56,10 @@ exports.update = function(req, res) {
 /**
  * Delete an mensaje
  */
-exports.destroy = function(req, res) {
+exports.destroy = function (req, res) {
     var mensaje = req.mensaje;
 
-    mensaje.remove(function(err) {
+    mensaje.remove(function (err) {
         if (err) {
             res.render('error', {
                 status: 500
@@ -69,14 +73,14 @@ exports.destroy = function(req, res) {
 /**
  * Show an mensaje
  */
-exports.show = function(req, res) {
+exports.show = function (req, res) {
     res.jsonp(req.mensaje);
 };
 
 /**
  * List of mensaje
  */
-exports.all = function(req, res) {
+exports.all = function (req, res) {
     if (req.user == undefined) {
         // 'No puedes ver los mensajes sin acceder'
         return res.send('users/signup', {
@@ -86,7 +90,7 @@ exports.all = function(req, res) {
         var user = req.user;
     }
 
-    Mensaje.find().sort('-created').populate('user', 'name username').exec(function(err, mensaje) {
+    Mensaje.find().sort('-created').populate('user', 'name username').exec(function (err, mensaje) {
         if (err) {
             res.render('error', {
                 status: 500
@@ -100,7 +104,7 @@ exports.all = function(req, res) {
 /**
  * Listado de mis mensajes
  */
-exports.mis = function(req, res) {
+exports.mis = function (req, res) {
     if (req.user == undefined) {
         // 'No puedes ver los mensajes sin acceder'
         return res.send('users/signup', {
@@ -110,9 +114,9 @@ exports.mis = function(req, res) {
         var user = req.user;
     }
 
-    console.log("{ 'receptor': '"+user._id+"' }");
+    console.log("{ 'receptor': '" + user._id + "' }");
 
-    Mensaje.find({receptor: user._id }).sort('-created').populate('user', 'name username').exec(function(err, mensaje) {
+    Mensaje.find({receptor: user._id }).sort('-created').populate('user', 'name username').exec(function (err, mensaje) {
         if (err) {
             res.render('error', {
                 status: 500
@@ -124,19 +128,13 @@ exports.mis = function(req, res) {
 };
 
 exports.userMessage = function (req, res) {
-
-    if (req.data.id == null) {
-        req.io.emit('countMessage', {mensaje: 0});
-    } else {
-        Mensaje.find({receptor: req.data.id }).count().exec(function(err, mensaje) {
-            if (err) {
-                res.render('error', {
-                    status: 500
-                });
-            } else {
-                var socketIO = global.socketIO;
-                socketIO.sockets.in(req.data.id).emit('countMessage', {mensaje: mensaje});
-            }
-        });
-    }
+    Mensaje.find({receptor: req.data.id }).count().exec(function (err, mensaje) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            res.jsonp(mensaje);
+        }
+    });
 };
