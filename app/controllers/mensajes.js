@@ -24,7 +24,6 @@ exports.create = function (req, res) {
     var mensaje = new Mensaje(req.body);
     mensaje.user = req.user;
 
-
     mensaje.save(function (err) {
         if (err) {
             return res.send('users/signup', {
@@ -33,8 +32,8 @@ exports.create = function (req, res) {
             });
         } else {
             var iduser = mensaje._id;
-            var socketIO = global.socketIO;
-            socketIO.sockets.in(iduser).emit('countMessage', {mensaje: mensaje});
+            var io = global.io;
+            io.sockets.in(iduser).emit('countMessage', {mensaje: mensaje});
             res.jsonp(mensaje);
         }
     });

@@ -75,7 +75,7 @@ module.exports = function(app, passport, auth) {
     app.get('/mensajes', mensajes.all);
     app.post('/mensajes', auth.requiresLogin, mensajes.create);
     app.get('/mensajes/:mensajeId', mensajes.show);
-    app.get('/mensajes/:contarMensajes', mensajes.userMessage)
+    app.get('/mensajes/:contarMensajes', mensajes.userMessage);
     app.get('/mismensajes/:receptor', mensajes.mis);
     app.put('/mensajes/:mensajeId', auth.requiresLogin, auth.mensaje.hasAuthorization, mensajes.update);
     app.del('/mensajes/:mensajeId', auth.requiresLogin, auth.mensaje.hasAuthorization, mensajes.destroy);

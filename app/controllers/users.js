@@ -44,11 +44,7 @@ exports.signout = function (req, res) {
  * Session
  */
 exports.session = function (req, res) {
-    var io = global.io;
     var user = req.user;
-    io.on('connect', function () {
-        io.emit('adduser', {id: user._id});
-    });
     res.redirect('/');
 };
 

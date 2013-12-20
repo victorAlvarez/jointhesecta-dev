@@ -1,4 +1,5 @@
 angular.module('jts.mensajes').controller('MensajesController', ['$scope', '$routeParams', '$location', 'Global', 'Mensajes','MisMensajes', function ($scope, $routeParams, $location, Global, Mensajes, MisMensajes) {
+    console.log("jts.mensajes --> controller(MensajesController)");
     $scope.global = Global;
 
     $scope.selected = undefined;

@@ -1,21 +1,18 @@
-/**
- * Created by Victor-BookPro on 12/12/13.
- */
+global.usuarios = [];
 
 module.exports = function (app, server) {
-    var socketIO = require('socket.io').listen(server);
+    var io = require('socket.io').listen(server);
+    global.io = io;
 
-    var idusuarios = {};
-
-    global.io = socketIO;
     io.sockets.on('connection', function (socket) {
-        global.socket = socket;
-
-        socket.on('adduser', function(username){
-            console.log('usuarios: %j' + JSON.stringify(idusuarios, null, 2));
-            socket.username = username;
-            idusuarios[username] = username;
-            socket.join(username);
+        console.log('Socket. on connection:');
+        socket.on('addUser', function(user){
+            console.log('Usuario en servidor socket.io:');
+            console.log(user._id);
+            //console.log('usuarios: %j' + JSON.stringify(usuarios, null, 2));
+           // socket.username = username;
+            global.usuarios[user._id] = socket;
+            //socket.join(username);
         });
     });
 

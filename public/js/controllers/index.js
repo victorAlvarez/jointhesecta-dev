@@ -1,4 +1,6 @@
-angular.module('jts.system').controller('IndexController', ['$scope', 'Global', 'socket',
-    function ($scope, Global, socket) {
+angular.module('jts.system').controller('IndexController', ['$scope', 'Global',
+    function ($scope, Global) {
+        console.log("jts.system --> controller(IndexController)");
         $scope.global = Global;
-    }]);
+    }
+]);

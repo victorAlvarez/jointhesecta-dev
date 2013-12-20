@@ -1,6 +1,18 @@
+var connected = false;
 
 angular.module('jts.socket').factory('socket', function ($rootScope) {
-    var socket = io.connect();
+    console.log("jts.socket --> factory(socket)")
+
+    if(connected){
+        console.log('Petición socket!')
+    }else{
+
+        console.log('Primera conexion!');
+        var socket = io.connect();
+        socket.emit('addUser', window.user);
+        connected = true;
+    }
+
     return {
         on: function (eventName, callback) {
             socket.on(eventName, function () {

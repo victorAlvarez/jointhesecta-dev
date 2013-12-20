@@ -1,4 +1,5 @@
-angular.module('jts.system').controller('HeaderController', ['$scope', 'Global', 'socket', 'Mensajes', function ($scope, Global, socket, Mensajes) {
+angular.module('jts.system').controller('HeaderController', ['$scope', 'Global', function ($scope, Global) {
+    console.log("jts.system --> controller(HeaderController)");
     $scope.global = Global;
 
         $scope.menu = [
@@ -24,6 +25,8 @@ angular.module('jts.system').controller('HeaderController', ['$scope', 'Global',
             }
         ];
 
+
+    /*
         if ($scope.global.user != null) {
 
             $scope.countMesssage = function () {
@@ -34,7 +37,7 @@ angular.module('jts.system').controller('HeaderController', ['$scope', 'Global',
                 });
             }
 
-            /*socket.emit('userMessage', {id: $scope.global.user._id});*/
+            // socket.emit('userMessage', {id: $scope.global.user._id});
 
             socket.on('countMessage', function (data) {
                 $scope.countMessage = data.mensaje;
@@ -42,6 +45,6 @@ angular.module('jts.system').controller('HeaderController', ['$scope', 'Global',
             });
 
         }
-
+*/
         $scope.isCollapsed = false;
     }]);
