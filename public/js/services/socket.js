@@ -6,7 +6,6 @@ angular.module('jts.socket').factory('socket', function ($rootScope) {
     if(connected){
         console.log('Petición socket!')
     }else{
-
         console.log('Primera conexion!');
         var socket = io.connect();
         socket.emit('addUser', window.user);

@@ -1,17 +1,8 @@
     var names = {};
 
-    var claim = function (name) {
-        if (!name || userNames[name]) {
-            return false;
-        } else {
-            userNames[name] = true;
-            return true;
-        }
-    };
-
     var getUsers = function () {
         var res = [];
-        for (user in names) {
+        for (user in global.usuarios) {
             res.push(user);
         }
         return res;
@@ -35,31 +26,32 @@ exports.iniciar = function (req, res) {
     **/
 
     // send the new user their name and a list of users
-    io.sockets.socket(socketid).emit('init', {
+    socketid.emit('init', {
         name: name,
         users: getUsers()
     });
 
     // notify other clients that a new user has joined
     io.sockets.emit('user:join', {
-        name: name
+        name: name,
+        users: getUsers()
     });
 
     // broadcast a user's message to other users
-    io.sockets.socket(socketid).on('send:message', function (data) {
-        io.sockets.socket(socketid).broadcast.emit('send:message', {
+    socketid.on('send:message', function (data) {
+        socketid.broadcast.emit('send:message', {
             user: name,
             text: data.message
         });
     });
 
     // clean up when a user leaves, and broadcast it to other users
-    io.sockets.socket(socketid).on('disconnect', function () {
-        io.sockets.socket(socketid).broadcast.emit('user:left', {
+    socketid.on('disconnect', function () {
+        socketid.broadcast.emit('user:left', {
             name: name
         });
-        if (names[name]) {
-            delete names[name];
+        if (global.usuarios[_id]) {
+            delete global.usuarios[_id];
         }
     });
 };

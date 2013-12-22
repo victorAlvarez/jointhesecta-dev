@@ -1,11 +1,8 @@
 angular.module('jts.chat').controller('ChatController', ['$scope', '$http', '$routeParams', '$location', 'Global', 'socket', function ($scope, $http, $routeParams, $location, Global, socket ) {
-    console.log("jts.chat --> controller(ChatController)");
     $scope.global = Global;
 
     $scope.messages = [];
     $scope.users = [];
-
-
 
     socket.on('connect', function () {
        console.log("on connect jts.chat");
@@ -68,7 +65,7 @@ angular.module('jts.chat').controller('ChatController', ['$scope', '$http', '$ro
 
     $scope.iniciar = function(){
         $http.get('/chat').success(function (data) {
-            $scope.name = data;
+            $scope.name = data
         });
     };
 }]);
