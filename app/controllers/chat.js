@@ -1,4 +1,3 @@
-var userNames = (function () {
     var names = {};
 
     var claim = function (name) {
@@ -10,54 +9,21 @@ var userNames = (function () {
         }
     };
 
-    // find the lowest unused "guest" name and claim it
-    var getGuestName = function () {
-        var name,
-            nextUserId = 1;
-        do {
-            name = 'Guest ' + nextUserId;
-            nextUserId += 1;
-        } while (!claim(name));
-        return name;
-    };
-
-    // serialize claimed names as an array
-    var get = function () {
+    var getUsers = function () {
         var res = [];
-        for (user in userNames) {
+        for (user in names) {
             res.push(user);
         }
         return res;
     };
-
-    var free = function (name) {
-        if (userNames[name]) {
-            delete userNames[name];
-        }
-    };
-
-    return {
-        claim: claim,
-        free: free,
-        get: get,
-        getGuestName: getGuestName
-    };
-}());
-
-exports.chat = function (req, res) {
-    console.log("Renderizamos chat");
-    res.render('chat/chat', {
-        title: 'CHAT'
-    });
-};
 
 exports.iniciar = function (req, res) {
     console.log("Entramos iniciar");
     var io = global.io;
     var name = req.user.name;
     var _id =  req.user._id;
-
-/**
+    var socketid = global.usuarios[_id];
+    /**
     io.socket.on('adduser', function (user) {
         console.log('Usuario en module.chat:');
         console.log(user);
@@ -66,11 +32,12 @@ exports.iniciar = function (req, res) {
       //  usuarios[username] = username;
       //  socket.join(username);
     });
-**/
+    **/
+
     // send the new user their name and a list of users
-    global.usuarios[_id].emit('init', {
+    io.sockets.socket(socketid).emit('init', {
         name: name,
-        users: userNames.get()
+        users: getUsers()
     });
 
     // notify other clients that a new user has joined
@@ -79,37 +46,20 @@ exports.iniciar = function (req, res) {
     });
 
     // broadcast a user's message to other users
-    global.usuarios[_id].on('send:message', function (data) {
-        global.usuarios[_id].broadcast.emit('send:message', {
+    io.sockets.socket(socketid).on('send:message', function (data) {
+        io.sockets.socket(socketid).broadcast.emit('send:message', {
             user: name,
             text: data.message
         });
     });
 
-    // validate a user's name change, and broadcast it on success
-    global.usuarios[_id].on('change:name', function (data, fn) {
-        if (userNames.claim(data.name)) {
-            var oldName = name;
-            userNames.free(oldName);
-
-            name = data.name;
-
-            global.usuarios[_id].broadcast.emit('change:name', {
-                oldName: oldName,
-                newName: name
-            });
-
-            fn(true);
-        } else {
-            fn(false);
-        }
-    });
-
     // clean up when a user leaves, and broadcast it to other users
-    global.usuarios[_id].on('disconnect', function () {
-        global.usuarios[_id].broadcast.emit('user:left', {
+    io.sockets.socket(socketid).on('disconnect', function () {
+        io.sockets.socket(socketid).broadcast.emit('user:left', {
             name: name
         });
-        userNames.free(name);
+        if (names[name]) {
+            delete names[name];
+        }
     });
 };
