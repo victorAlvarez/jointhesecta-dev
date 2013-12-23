@@ -1,8 +1,7 @@
-    var names = {};
-
+  
     var getUsers = function () {
         var res = [];
-        for (user in global.usuarios) {
+        for (user in names) {
             res.push(user);
         }
         return res;
@@ -33,8 +32,7 @@ exports.iniciar = function (req, res) {
 
     // notify other clients that a new user has joined
     io.sockets.emit('user:join', {
-        name: name,
-        users: getUsers()
+        name: name
     });
 
     // broadcast a user's message to other users
@@ -48,7 +46,7 @@ exports.iniciar = function (req, res) {
     // clean up when a user leaves, and broadcast it to other users
     socketid.on('disconnect', function () {
         socketid.broadcast.emit('user:left', {
-            name: name
+             name: name
         });
         if (global.usuarios[_id]) {
             delete global.usuarios[_id];

@@ -1,6 +1,5 @@
 angular.module('jts.chat').controller('ChatController', ['$scope', '$http', '$routeParams', '$location', 'Global', 'socket', function ($scope, $http, $routeParams, $location, Global, socket ) {
     $scope.global = Global;
-
     $scope.messages = [];
     $scope.users = [];
 

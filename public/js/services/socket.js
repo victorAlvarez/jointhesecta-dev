@@ -4,7 +4,7 @@ angular.module('jts.socket').factory('socket', function ($rootScope) {
     console.log("jts.socket --> factory(socket)")
 
     if(connected){
-        console.log('Petición socket!')
+        console.log('Petición socket!');
     }else{
         console.log('Primera conexion!');
         var socket = io.connect();
