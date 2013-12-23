@@ -1,7 +1,8 @@
 angular.module('jts.chat').controller('ChatController', ['$scope', '$http', '$routeParams', '$location', 'Global', 'socket', function ($scope, $http, $routeParams, $location, Global, socket ) {
     $scope.global = Global;
     $scope.messages = [];
-    $scope.users = [];
+    var cargar = false;
+
 
     socket.on('connect', function () {
        console.log("on connect jts.chat");
@@ -25,7 +26,8 @@ angular.module('jts.chat').controller('ChatController', ['$scope', '$http', '$ro
             user: 'chatroom',
             text: 'User ' + data.name + ' has joined.'
         });
-        $scope.users.push(data.name);
+        $scope.users = data.users;
+
     });
 
     // add a message to the conversation when a user disconnects or leaves the room
@@ -62,9 +64,14 @@ angular.module('jts.chat').controller('ChatController', ['$scope', '$http', '$ro
         $scope.message = '';
     };
 
-    $scope.iniciar = function(){
-        $http.get('/chat').success(function (data) {
-            $scope.name = data
+    if (cargar == false) {
+       angular.element(document).ready(function(){
+            $http.get('/chat').success(function (data) {
+                //$scope.name = data
+                console.log(data);
+            });
+            cargar = true;
         });
-    };
+    }
+
 }]);

@@ -1,38 +1,23 @@
-  
-    var getUsers = function () {
-        var res = [];
-        for (user in names) {
-            res.push(user);
-        }
-        return res;
-    };
+var usuarios = {};
 
 exports.iniciar = function (req, res) {
     console.log("Entramos iniciar");
     var io = global.io;
     var name = req.user.name;
+    usuarios[name] = name;
     var _id =  req.user._id;
     var socketid = global.usuarios[_id];
-    /**
-    io.socket.on('adduser', function (user) {
-        console.log('Usuario en module.chat:');
-        console.log(user);
-      // console.log('usuarios: %j' + JSON.stringify(usuarios, null, 2));
-      //  socket.username = username;
-      //  usuarios[username] = username;
-      //  socket.join(username);
-    });
-    **/
 
     // send the new user their name and a list of users
     socketid.emit('init', {
         name: name,
-        users: getUsers()
+        users: usuarios
     });
 
     // notify other clients that a new user has joined
     io.sockets.emit('user:join', {
-        name: name
+        name: name,
+        users: usuarios
     });
 
     // broadcast a user's message to other users
@@ -46,10 +31,16 @@ exports.iniciar = function (req, res) {
     // clean up when a user leaves, and broadcast it to other users
     socketid.on('disconnect', function () {
         socketid.broadcast.emit('user:left', {
-             name: name
+            name: name
         });
         if (global.usuarios[_id]) {
             delete global.usuarios[_id];
         }
     });
+
+    res.jsonp('entra');
+};
+
+exports.prueba = function(req, res) {
+    res.jsonp('prueba');
 };
