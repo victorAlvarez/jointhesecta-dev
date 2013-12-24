@@ -5,23 +5,35 @@ angular.module('jts.system').controller('HeaderController', ['$scope', 'Global',
         $scope.menu = [
             {
                 "title": "Modulos",
-                "link": "modules"
+                "link": "modules",
+                "subMenu": [{
+                            title: "Chat",
+                            link: "modulos/chat"
+                            },
+                            {
+                                title: "Chat",
+                                link: "modulos/chat"
+                            }]
             },
             {
                 "title": "Filosofía",
-                "link": "phylosofy"
+                "link": "phylosofy",
+                "subMenu": false
             },
             {
                 "title": "Hosting",
-                "link": "hosting"
+                "link": "hosting",
+                "subMenu": false
             },
             {
                 "title": "Quiénes somos",
-                "link": "whoweare"
+                "link": "whoweare",
+                "subMenu": false
             },
             {
                 "title": "Contactanos",
-                "link": "contact"
+                "link": "contact",
+                "subMenu": false
             }
         ];
 

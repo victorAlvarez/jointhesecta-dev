@@ -4,8 +4,9 @@ exports.iniciar = function (req, res) {
     console.log("Entramos iniciar");
     var io = global.io;
     var name = req.user.name;
-    usuarios[name] = name;
+
     var _id =  req.user._id;
+    usuarios[_id] = name;
     var socketid = global.usuarios[_id];
 
     // send the new user their name and a list of users

@@ -2,8 +2,7 @@ angular.module('jts.chat').controller('ChatController', ['$scope', '$http', '$ro
     $scope.global = Global;
     $scope.messages = [];
     var cargar = false;
-
-
+    
     socket.on('connect', function () {
        console.log("on connect jts.chat");
        // socket.emit('adduser', $scope.global.user);
@@ -73,5 +72,19 @@ angular.module('jts.chat').controller('ChatController', ['$scope', '$http', '$ro
             cargar = true;
         });
     }
+
+    /**
+     *
+     $scope.iniciar = function(){
+        console.log('scope.iniciar!!')
+        $http.get('/chat').success(function (data) {
+
+            console.log('get /chat');
+            $scope.name = data;
+            alert("OK");
+        });
+    };
+     * 
+     */
 
 }]);
