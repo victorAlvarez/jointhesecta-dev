@@ -1,46 +1,57 @@
-    <div class="container" data-ng-controller="HeaderController">
-               <div class="navbar-header">
-                   <a class="navbar-brand" href="/">JTS</a>
-               </div>
-
-     <ul class="nav navbar-nav">
-            <li class="dropdown" data-ng-repeat="item in menu" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ng-switch on="item.subMenu" >
-                 <a ng-switch-when="false" href="./#!/{{item.link}}">{{item.title}}</a>
-                 <a ng-switch-default href="#" class="dropdown-toggle" data-toggle="dropdown" >
+<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner" data-ng-controller="HeaderController">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="../" class="navbar-brand">JtS</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li class="dropdown" data-ng-repeat="item in menu" ui-route="/{{item.link}}"
+                    ng-class="{active: $uiRoute}" ng-switch on="item.subMenu">
+                    <a ng-switch-when="false" href="./#!/{{item.link}}">{{item.title}}</a>
+                    <a ng-switch-default href="#" class="dropdown-toggle" data-toggle="dropdown">
                         {{item.title}} <b class="caret"></b>
-                 </a>
-                <ul class="dropdown-menu" role="menu" >
-                    <li data-ng-repeat="itemSub in item.subMenu">
-                        <a href="./#!/{{itemSub.link}}">{{itemSub.title}}</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right" data-ng-hide="global.authenticated">
-            <li><a href="signup">Regístrate</a>
-            </li>
-            <li class="divider-vertical"></li>
-            <li><a href="signin">Zona clientes</a>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right" data-ng-show="global.authenticated">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    {{global.user.username}} <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="/#!/mensajes/{{global.user._id}}/mis">
-                            Mis mensajes
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-ng-repeat="itemSub in item.subMenu">
+                            <a href="./#!/{{itemSub.link}}">{{itemSub.title}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" data-ng-hide="global.authenticated">
+                <li><a href="signup">Regístrate</a>
+                </li>
+                <li class="divider-vertical"></li>
+                <li><a href="signin">Zona clientes</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" data-ng-show="global.authenticated">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {{global.user.username}} <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/#!/mensajes/{{global.user._id}}/mis">
+                                Mis mensajes
                             <span class="badge">
                                 {{countMessage}}
                             </span>
-                        </a>
-                    </li>
-                    <li ng-switch="global.user.username"><a ng-switch-when="admin" href="/#!/mensajes">Mensajes</a></li>
-                    <li><a href="/#!/mensajes/create">Nuevo mensaje</a></li>
-                    <li><a href="/signout">Salir</a></li>
-                </ul>
-            </li>
-        </ul>
+                            </a>
+                        </li>
+                        <li ng-switch="global.user.username"><a ng-switch-when="admin" href="/#!/mensajes">Mensajes</a>
+                        </li>
+                        <li><a href="/#!/mensajes/create">Nuevo mensaje</a></li>
+                        <li><a href="/signout">Salir</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
     </div>
+</header>
