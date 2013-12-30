@@ -97,4 +97,9 @@ module.exports = function(app, passport, auth) {
     var posit = require('../app/controllers/posit');
     app.get('/posit', posit.iniciarPosit);
 
+    //Graphic
+    var graphic = require('../app/controllers/graphics');
+    app.get('/graphic', graphic.list);
+    app.put('/graphic/:id', graphic.update);
+
 };

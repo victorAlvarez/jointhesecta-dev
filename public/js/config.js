@@ -41,6 +41,9 @@ window.app.config(['$routeProvider',
             when('/modulos/posit', {
                 templateUrl: 'views/modulos/posit.html'
             }).
+            when('/modulos/graphic', {
+                templateUrl: 'views/modulos/graphic.html'
+            }).
             when('/', {
                 templateUrl: 'views/index.html'
             }).

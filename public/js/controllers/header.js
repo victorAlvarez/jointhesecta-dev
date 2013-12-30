@@ -14,6 +14,10 @@ angular.module('jts.system').controller('HeaderController', ['$scope', 'Global',
                 {
                     title: "Posit",
                     link: "modulos/posit"
+                },
+                {
+                    title: "Graphic",
+                    link: "modulos/graphic"
                 }
             ]
         },

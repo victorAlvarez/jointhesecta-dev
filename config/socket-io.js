@@ -41,4 +41,13 @@ module.exports = function (app, server) {
             console.log('**********************');
         });
     });
+
+    io.of('/modulos/graphic').on('connection', function (socket) {
+        console.log('**********************');
+        console.log('Socket. on connection in graphic:');
+
+        socket.on('disconnect', function () {
+            console.log('Hasta Luego!');
+        });
+    });
 };
