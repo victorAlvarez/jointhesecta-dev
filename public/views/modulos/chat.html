@@ -4,14 +4,16 @@
     </div>
     <div class="col">
         <h3>Messages</h3>
-        <div class="overflowable" id="contenedorChat">
-            <p data-ng-repeat="message in messages">:
+        
+        <div class="overflowable" scroll-if>
+            <p data-ng-repeat="message in messages" scroll-item>
                 {{message.user}}: {{message.text}}
             </p>
         </div>
     </div>
     <div class="col">
         <h3>Users</h3>
+
         <div class="overflowable">
             <p data-ng-repeat="user in users">
                 {{user}}

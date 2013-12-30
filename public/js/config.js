@@ -38,6 +38,9 @@ window.app.config(['$routeProvider',
             when('/modulos/chat', {
                 templateUrl: 'views/modulos/chat.html'
             }).
+            when('/modulos/posit', {
+                templateUrl: 'views/modulos/posit.html'
+            }).
             when('/', {
                 templateUrl: 'views/index.html'
             }).

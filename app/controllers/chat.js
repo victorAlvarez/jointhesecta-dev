@@ -6,8 +6,9 @@ exports.iniciar = function (req, res) {
     var name = req.user.name;
 
     var _id =  req.user._id;
+
     usuarios[_id] = name;
-    var socketid = global.usuarios[_id];
+    var socketid = global.chat[_id];
 
     // send the new user their name and a list of users
     socketid.emit('init', {
@@ -16,7 +17,7 @@ exports.iniciar = function (req, res) {
     });
 
     // notify other clients that a new user has joined
-    io.sockets.emit('user:join', {
+    io.of('/modulos/chat').emit('user:join', {
         name: name,
         users: usuarios
     });
@@ -31,12 +32,18 @@ exports.iniciar = function (req, res) {
 
     // clean up when a user leaves, and broadcast it to other users
     socketid.on('disconnect', function () {
-        socketid.broadcast.emit('user:left', {
-            name: name
-        });
-        if (global.usuarios[_id]) {
-            delete global.usuarios[_id];
+        console.log('desconectado');
+        if (global.chat[_id]) {
+            console.log('Antes de eliminar el socket: ' + global.chat[_id]);
+            delete global.chat[_id];
+            console.log('Despues de eliminar el socket: ' + global.chat[_id]);
+            delete usuarios[_id];
+
         }
+        socketid.broadcast.emit('user:left', {
+            name: name,
+            users: usuarios
+        });
     });
 
     res.jsonp('entra');

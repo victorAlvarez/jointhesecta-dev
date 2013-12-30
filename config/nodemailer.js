@@ -13,7 +13,7 @@ var transport = nodemailer.createTransport("SMTP", {
 
 var mailOptions = {
     from: "Administrador ✔ <info@jointhesecta.com>", // sender address
-    to: "mrtnz.rcrd@gmail.com", // list of receivers
+    to: "", // list of receivers
     subject: "Hello ✔", // Subject line
     text: "Hello world ✔", // plaintext body
     html: "<b>Hello world ✔</b>" // html body

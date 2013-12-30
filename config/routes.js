@@ -72,7 +72,7 @@ module.exports = function(app, passport, auth) {
 
     //Mensaje Routes
     var mensajes = require('../app/controllers/mensajes');
-    app.get('/mensajes', mensajes.all);
+    app.get('/mensajes', auth.requiresLogin, mensajes.all);
     app.post('/mensajes', auth.requiresLogin, mensajes.create);
     app.get('/mensajes/:mensajeId', mensajes.show);
     app.get('/mensajes/:contarMensajes', mensajes.userMessage);
@@ -91,6 +91,10 @@ module.exports = function(app, passport, auth) {
 
     /** CHAT **/
     var chat = require('../app/controllers/chat');
-    app.get('/chat',chat.iniciar);
+    app.get('/chat', chat.iniciar);
+
+    //POSIT
+    var posit = require('../app/controllers/posit');
+    app.get('/posit', posit.iniciarPosit);
 
 };

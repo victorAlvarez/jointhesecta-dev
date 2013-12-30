@@ -1,5 +1,6 @@
 //Mensajes service used for mensajes REST endpoint
 angular.module('jts.mensajes').factory("Mensajes", ['$resource', function ($resource) {
+    console.log("jts.mensajes --> factory(Mensajes)")
     return $resource(
         'mensajes/:mensajeId',
         {
