@@ -1,27 +1,25 @@
 extends auth
 
 block auth
-    form.signin.form-horizontal(action="/users/session", method="post")
-        h2(style='font: 1.833em/1 \'FS Albert Pro Web Light\',Helvetica,Arial,sans-serif; margin-bottom: 20px;') Zona clientes
-        if (message != "")
-            div.alert.alert-danger
-                button.close(type='button', data-dismiss='alert') x
-                p=message
-        .control-group
-            label.control-label(for='email') Email
-            .controls
-                input#email(type='text', name="email", placeholder='Email')
+    .col-md-offset-2.col-md-6
+        form.signin.form-horizontal(action="/users/session", method="post", role="form")
+            h2(style='font: 1.833em/1 \'FS Albert Pro Web Light\',Helvetica,Arial,sans-serif; margin-bottom: 20px;') Zona clientes
+            if (message != "")
+                div.alert.alert-danger
+                    button.close(type='button', data-dismiss='alert') x
+                    p=message
+            .form-group
+                label(for='email') Email
+                input.form-control#email(type='text', name="email", placeholder='Email')
 
-        .control-group
-            label.control-label(for='password') Contraseña
-            .controls
-                input#password(type='password', name="password", placeholder='Contraseña')
+            .form-group
+                label(for='password') Contraseña
+                input.form-control#password(type='password', name="password", placeholder='Contraseña')
 
-        .control-group
-            .controls
+            .form-group
                 label.checkbox
-                    input#session(type='checkbox')
-                    | No cerrar sesión
+                input#session(type='checkbox')
+                | No cerrar sesión
                 button.btn.btn-primary(type='submit') Iniciar Sesión
                 &nbsp;
                 | o&nbsp;
