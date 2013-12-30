@@ -139,5 +139,30 @@ window.angular.module('jts.directives', [])
                 ondelete: '&'
             }
         };
+    })
+    .directive('chart', function () {
+        return {
+            template: '<div id="chart"></div>',
+            restrict: 'E',
+            link: function postLink(scope, element, attrs) {
+
+                scope.$watch('graphics', function(newValue, oldValue, scope) {
+
+                    if (newValue === undefined) return;
+                    var chartGraphics = newValue.map(function(graphic) {
+                        return [graphic.name, graphic.votes];
+                    });
+
+                    var data = google.visualization.arrayToDataTable(chartGraphics, true);
+                    var googleChart = new google.visualization.PieChart(document.getElementById('chart'));
+                    googleChart.draw(data);
+
+
+                });
+
+            }
+
+        };
+
     });
 

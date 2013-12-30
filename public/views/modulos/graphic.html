@@ -1,0 +1,35 @@
+<section data-ng-controller="GraphicController">
+    <div class="container">
+
+        <div class="page-header">
+            <h3>Vote - Brazil World Cup 2014</h3>
+        </div>
+
+        <p class="question">Which team will win the Brazil World Cup 2014?</p>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <td>Team</td>
+                <td></td>
+                <td>Votes</td>
+                <td/>
+            </tr>
+            </thead>
+            <tr ng-repeat="graphic in graphics">
+                <td><img ng-src="../img/{{graphic.urlImage}}" style="float: left"/></td>
+                <td>{{graphic.name}}</td>
+                <td>{{graphic.votes}}</td>
+                <td>
+                    <button class="btn btn-small btn-primary" type="button" value="Vote" ng-click="vote(graphic)"
+                            ng-disabled="disableVote">Vote</buton>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="container">
+        <chart></chart>
+    </div>
+</section>
