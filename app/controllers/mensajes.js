@@ -3,7 +3,8 @@
  */
 var mongoose = require('mongoose'),
     Mensaje = mongoose.model('Mensaje'),
-    _ = require('underscore');
+    _ = require('underscore'),
+    correo = require('../../config/mailer');
 
 /**
  * Find mensaje by id
@@ -23,6 +24,16 @@ exports.mensaje = function (req, res, next, id) {
 exports.create = function (req, res) {
     var mensaje = new Mensaje(req.body);
     mensaje.user = req.user;
+
+    var mailOptions = {
+        from: req.user.email, // sender address
+        to: "Administrador <info@jointhesecta.com>", // list of receivers
+        subject: mensaje.asunto, // Subject line
+        text: mensaje.content, // plaintext body
+        html: "<p>"+mensaje.content+"</p>" // html body
+    }
+
+    correo.enviarCorreo(mailOptions);
 
     mensaje.save(function (err) {
         if (err) {

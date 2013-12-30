@@ -55,7 +55,6 @@ var port = process.env.PORT || config.port;
 var server = app.listen(port);
 console.log('Express app started on port ' + port);
 require('./config/socket-io')(app, server);
-require('./config/nodemailer')();
 
 //Initializing logger
 logger.init(app, passport, mongoose);

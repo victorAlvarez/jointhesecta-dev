@@ -11,11 +11,12 @@ var transport = nodemailer.createTransport("SMTP", {
     }
 });
 
+/*
 var mailOptions = {
-    from: "Administrador ✔ <info@jointhesecta.com>", // sender address
-    to: "", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world ✔", // plaintext body
+    from: "", // sender address
+    to: "Administrador ✔ <info@jointhesecta.com>", // list of receivers
+    subject: "Bienvenido a join the secta", // Subject line
+    text: "Hello world", // plaintext body
     html: "<b>Hello world ✔</b>" // html body
 }
 
@@ -25,6 +26,17 @@ module.exports = function(){
             console.log(error);
         }else{
             console.log("Message sent: " + response.message);
+        }
+    });
+};
+*/
+
+exports.enviarCorreo = function(mailOptions){
+    transport.sendMail(mailOptions, function(error, response){
+        if(error){
+            console.log(error);
+        }else{
+            console.log("Mensaje enviado: " + response.message);
         }
     });
 };
