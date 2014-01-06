@@ -1,5 +1,5 @@
 {
-    "db": "mongodb://nodejitsu_victoralvarez:5but7ifti347sm5ullrem4jecb@ds061548.mongolab.com:61548/nodejitsu_victoralvarez_nodejitsudb5767033391",
+    "db": "mongodb://root:root123@ds039487.mongolab.com:39487/jointhesecta",
     "app": {
         "name": "MEAN - A Modern Stack - Production"
     },

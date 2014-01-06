@@ -1,6 +1,5 @@
 {
     "name": "mean",
-    "subdomain": "jointhesecta-dev",
     "description": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
     "version": "0.1.0",
     "private": false,
