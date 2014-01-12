@@ -102,4 +102,11 @@ module.exports = function(app, passport, auth) {
     app.get('/graphic', graphic.list);
     app.put('/graphic/:id', graphic.update);
 
+    //Header
+    app.get('/headerMensaje/:id', mensajes.userMessage);
+    app.get('/headerNewMensaje/:id', mensajes.userNewMessage);
+    app.get('/headerNewMensaje2/:id', users.obtenerNombre);
+    app.get('/checkMessage/:id', mensajes.checkMessage);
+    app.get('/noNewMessage/:id', mensajes.noNewMessage);
+
 };
