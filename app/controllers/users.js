@@ -154,3 +154,25 @@ exports.obtenerEmail = function (req, res, next, id) {
 exports.probando = function (req, res, next, id) {
     req.io.emit('get-feelings');
 };
+
+exports.obtenerNombre = function (req, res, next) {
+    var id = req.params.id;
+    var _id =  req.user._id;
+
+    var socketid = global.usuarios[_id];
+
+    User.findOne({_id: id}, {_id:0, username: 1})
+        .exec(function (err, username) {
+            if (err) {
+                res.render('error', {
+                    status: 500
+                });
+            } else {
+                socketid.emit('newMessageName', {
+                    username: username
+                });
+                res.jsonp('finish');
+            }
+        });
+
+};

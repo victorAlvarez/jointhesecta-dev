@@ -28,6 +28,11 @@ var MensajeSchema = new Schema({
         default: '',
         trim: true
     },
+    view: {
+        type: Number,
+        default: 1,
+        trim: true
+    },
     user: {
         type: Schema.ObjectId,
         ref: 'User'

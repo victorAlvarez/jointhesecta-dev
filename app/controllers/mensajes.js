@@ -42,9 +42,10 @@ exports.create = function (req, res) {
                 mensaje: mensaje
             });
         } else {
-            var iduser = mensaje._id;
-            var io = global.io;
-            io.sockets.in(iduser).emit('countMessage', {mensaje: mensaje});
+            var iduser = mensaje.receptor.toHexString();
+            var iduser2 = mensaje.user;
+            var usuario = global.usuarios[iduser];
+            usuario.emit('newMessage', {id: iduser, id2: iduser2});
             res.jsonp(mensaje);
         }
     });
@@ -138,13 +139,77 @@ exports.mis = function (req, res) {
 };
 
 exports.userMessage = function (req, res) {
-    Mensaje.find({receptor: req.data.id }).count().exec(function (err, mensaje) {
+    var _id =  req.params.id;
+
+    var socketid = global.usuarios[_id];
+
+    Mensaje.find({receptor: _id }).count().exec(function (err, mensaje) {
         if (err) {
             res.render('error', {
                 status: 500
             });
         } else {
-            res.jsonp(mensaje);
+            socketid.emit('countMessage', {
+                mensaje: mensaje
+            });
+            res.jsonp('finish');
+        }
+    });
+};
+
+exports.userNewMessage = function (req, res) {
+    var _id =  req.params.id;
+
+    var socketid = global.usuarios[_id];
+
+    Mensaje.find({receptor: _id, view: 1 }).count().exec(function (err, mensaje) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            socketid.emit('newMessage2', {
+                mensaje: mensaje
+            });
+            res.jsonp('finish');
+        }
+    });
+};
+
+exports.checkMessage = function (req, res) {
+    var _id =  req.params.id;
+
+    var socketid = global.usuarios[_id];
+
+    Mensaje.find({receptor: _id, view: 1 }).count().exec(function (err, mensaje) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            socketid.emit('checkMessage', {
+                mensaje: mensaje
+            });
+            res.jsonp('finish');
+        }
+    });
+};
+
+exports.noNewMessage = function (req, res) {
+    var _id =  req.params.id;
+
+    var socketid = global.usuarios[_id];
+
+    Mensaje.find({receptor: _id }).count().exec(function (err, mensaje) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            socketid.emit('countMessage', {
+                mensaje: mensaje
+            });
+            res.jsonp('finish');
         }
     });
 };
