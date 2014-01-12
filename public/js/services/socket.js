@@ -1,7 +1,28 @@
 var connected = false;
-
-angular.module('jts.socket').factory('socket', function ($rootScope, $location) {
+angular.module('jts.socket').factory('socket', function ($rootScope) {
     console.log("jts.socket --> factory(socket)")
+
+    var socket = io.connect('', {'force new connection' : true});
+    return {
+        on: function (eventName, callback) {
+            socket.on(eventName, function () {
+                var args = arguments;
+                $rootScope.$apply(function () {
+                    callback.apply(socket, args);
+                });
+            });
+        },
+        emit: function (eventName, data, callback) {
+            socket.emit(eventName, data, function () {
+                var args = arguments;
+                $rootScope.$apply(function () {
+                    if (callback) {
+                        callback.apply(socket, args);
+                    }
+                });
+            })
+        }
+    };
 
     /*if(connected){
         console.log('Petición socket!');
@@ -10,7 +31,7 @@ angular.module('jts.socket').factory('socket', function ($rootScope, $location) 
         var socket = io.connect('/modulos/chat', {'force new connection' : true});
         socket.emit('addUser', window.user);
         connected = true;
-    }*/
+    }
 
     if ($location.path() == "/modulos/chat") {
         console.log('Conexión a namespace CHAT');
@@ -67,5 +88,5 @@ angular.module('jts.socket').factory('socket', function ($rootScope, $location) 
                 socketPosit.disconnect();
             }
         };
-    }
+    }*/
 });
