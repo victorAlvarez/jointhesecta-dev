@@ -1,4 +1,15 @@
 <section ng-controller="IndexController">
+    <div style="height: 305px">
+    <carousel interval="myInterval">
+        <slide ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="{{slide.image}}" style="margin:auto;">
+            <div class="carousel-caption">
+                <h4>Slide {{$index}}</h4>
+                <p>{{slide.text}}</p>
+            </div>
+        </slide>
+    </carousel>
+</div>
     <div class="jumbotron">
         <h2>Nuestra filosofia</h2>
         <h4>Nuestro oficio es informatico, lo llevamos en la sangre.</h4>
@@ -7,9 +18,7 @@
         <p>La comunicacion y trato es lo primero, asi que nuestra relacion con los clientes siempre sera formal. Queremos crecer unidos, que la integracion sea maxima, la comunicacion y la confianza sera la clave para alcanzar el exito conjunto.</p>
     </div>
     <div class="marketing">
-
         <h1>No busques mas, somos nosotros, confia, conocemos mas, contacta.</h1>
-
         <div class="row">
             <div class="col-md-4">
                 <img class="img-responsive" src="http://ludoforum.com/wp-content/uploads/apreton-de-manos.jpg">
@@ -28,4 +37,3 @@
             </div>
         </div>
 </section>
-
