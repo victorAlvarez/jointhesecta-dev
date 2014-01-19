@@ -47,6 +47,7 @@ angular.module('jts.system').controller('HeaderController', ['$scope', '$http', 
                 angular.element(document).ready(function () {
                     socket.emit('addUser', window.user);
 
+
                     cargar = true;
                 });
                 var id = $scope.global.user._id;
@@ -55,8 +56,11 @@ angular.module('jts.system').controller('HeaderController', ['$scope', '$http', 
 
                 });*/
 
-                $http.get('/checkMessage/' + id).success(function (data) {
 
+                socket.on("compruebaMensajes",function(bandera){
+                    if(bandera){
+                        $http.get('/checkMessage/' + id).success(function (data) {                   });
+                    }
                 });
 
                 /*$http.get('/headerMensaje/' + id).success(function (data) {

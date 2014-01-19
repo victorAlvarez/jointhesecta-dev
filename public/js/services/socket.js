@@ -2,7 +2,7 @@ var connected = false;
 angular.module('jts.socket').factory('socket', function ($rootScope) {
     console.log("jts.socket --> factory(socket)")
 
-    var socket = io.connect('', {'force new connection' : true});
+    var socket = io.connect('http://148.251.21.152:3000', {'force new connection' : true});
     return {
         on: function (eventName, callback) {
             socket.on(eventName, function () {

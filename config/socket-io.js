@@ -21,7 +21,7 @@ module.exports = function (app, server) {
             global.usuarios[user._id] = socket;
 
             console.log('usuarios conectados en socket general:' + io.sockets.clients().length);
-
+            socket.emit("compruebaMensajes",true);
         });
 
         socket.on('disconnect', function () {
