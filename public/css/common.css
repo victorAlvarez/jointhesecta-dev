@@ -71,3 +71,31 @@
     top: auto;
     bottom: 15px;
 }
+
+.mongodb{
+    background-color: #402817;
+    color: #ffffff;
+}
+.mongodb .contenido{
+    background-color: #f3f4eb;
+    color: #4c3a2c;
+}
+
+.mongodb .contenido ul{
+    list-style-image: url(http://media.mongodb.org/bullet-green.png);
+}
+
+.angular{
+    background-color: #eeeeee;
+    color: #535353;
+}
+.nodejs{
+    background-color: #46483e;
+    border-top: 6px #8cc84b solid;
+    color: #d2d8ba;
+}
+
+.nodejs a{
+    color: #690;
+    text-decoration: none;
+}

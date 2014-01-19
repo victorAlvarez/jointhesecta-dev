@@ -13,6 +13,7 @@ module.exports = function(app, passport, db) {
     //Prettify HTML
     app.locals.pretty = true;
 
+
     //Should be placed before express.static
     app.use(express.compress({
         filter: function(req, res) {
@@ -26,7 +27,7 @@ module.exports = function(app, passport, db) {
     app.use(express.static(config.root + '/public'));
 
     //Don't use logger for test env
-    if (process.env.NODE_ENV !== 'test') {
+    if (process.env.NODE_ENV !== 'development') {
         app.use(express.logger('dev'));
     }
 
