@@ -10,6 +10,13 @@
             <a href="../" class="navbar-brand">JtS</a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-right" data-ng-hide="global.authenticated">
+                <li><a href="signup">Regístrate</a>
+                </li>
+                <li class="divider-vertical"></li>
+                <li><a href="signin">Zona clientes</a>
+                </li>
+            </ul>
             <ul class="nav navbar-nav navbar-right" data-ng-show="global.authenticated">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -44,13 +51,6 @@
                             <a href="./#!/{{itemSub.link}}">{{itemSub.title}}</a>
                         </li>
                     </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right" data-ng-hide="global.authenticated">
-                <li><a href="signup">Regístrate</a>
-                </li>
-                <li class="divider-vertical"></li>
-                <li><a href="signin">Zona clientes</a>
                 </li>
             </ul>
         </div>
