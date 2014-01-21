@@ -44,6 +44,7 @@ module.exports = function (app, server) {
             console.log(user);
             global.chat[user._id] = socket;
             console.log('usuarios conectados en chat:' + io.of('/modulos/chat').clients().length);
+            socket.emit("addUserChatOk",true);
         });
     });
 
