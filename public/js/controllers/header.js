@@ -11,11 +11,6 @@ angular.module('jts.system').controller('HeaderController', ['$scope', '$http', 
                 "subMenu": false
             },
             {
-                "title": "Filosofía",
-                "link": "phylosofy",
-                "subMenu": false
-            },
-            {
                 "title": "Hosting",
                 "link": "hosting",
                 "subMenu": false
