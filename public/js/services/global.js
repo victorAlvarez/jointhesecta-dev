@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('jts.system').factory("Global", [function() {
     console.log("jts.system --> factory(Global)");
     var _this = this;

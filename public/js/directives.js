@@ -1,3 +1,5 @@
+'use strict';
+
 window.angular.module('jts.directives', [])
     .directive('validPasswordC', function () {
         return {

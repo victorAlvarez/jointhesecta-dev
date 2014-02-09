@@ -1,5 +1,7 @@
+'use strict';
+
 //Setting up route
-window.app.config(['$routeProvider',
+angular.module('jts').config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
             when('/mensajes', {
@@ -54,8 +56,8 @@ window.app.config(['$routeProvider',
 ]);
 
 //Setting HTML5 Location Mode
-window.app.config(['$locationProvider',
-    function ($locationProvider) {
-        $locationProvider.hashPrefix("!");
+angular.module('jts').config(['$locationProvider',
+    function($locationProvider) {
+        $locationProvider.hashPrefix('!');
     }
 ]);
