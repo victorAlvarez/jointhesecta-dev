@@ -3,7 +3,7 @@
 module.exports = {
     db: 'mongodb://root:root123@ds039487.mongolab.com:39487/jointhesecta',
     app: {
-        name: 'Join The Secta - Development'
+        name: 'join the secta - DEV'
     },
     facebook: {
         clientID: 'APP_ID',

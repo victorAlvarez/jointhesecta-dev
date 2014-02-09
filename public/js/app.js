@@ -1,4 +1,4 @@
-angular.module('jts', ['ngCookies', 'ngResource', 'ngAnimate', 'ngRoute', 'ui.bootstrap', 'jts.system',
+angular.module('jts', ['ngCookies', 'ngResource', 'ngRoute', 'ui.bootstrap', 'jts.system',
     'jts.socket' ,'jts.mensajes', 'jts.chat', 'jts.posit', 'jts.graphic', 'jts.toaster', 'jts.users', 'jts.directives']);
 
 angular.module('jts.system', []);

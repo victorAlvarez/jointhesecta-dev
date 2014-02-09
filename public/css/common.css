@@ -89,6 +89,8 @@
     background-color: #eeeeee;
     color: #535353;
 }
+
+/** Slider node.js  **/
 .nodejs{
     background-color: #46483e;
     border-top: 6px #8cc84b solid;
@@ -98,4 +100,40 @@
 .nodejs a{
     color: #690;
     text-decoration: none;
+}
+/*
+.nodejs img {
+    padding: 3em;
+}
+
+.nodejs p {
+    padding: 1em;
+}
+*/
+.sliderPrincipal img{
+    padding: 3em;
+}
+
+.sliderPrincipal p {
+    padding: 1em;
+}
+
+.socket {
+    background-image: url(../img/pattern_socket.png);
+}
+
+.socket a.download {
+    color:#4a6715;
+    display:block;
+    font:48px "ChunkFiveRegular";
+    height:124px;
+    left: 256px;
+    padding-top:23px;
+    position:absolute;
+    text-align:center;
+    text-decoration:none;
+    text-shadow:0 1px 0 #fff;
+    top: 48px;
+    width: 15%;
+    -webkit-transition:500ms opacity;
 }

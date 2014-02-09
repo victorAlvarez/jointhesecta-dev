@@ -1,53 +1,108 @@
 <section ng-controller="IndexController">
 
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+          join the secta
+        </h1>
+    </div>
+</div>
 
+<div class="sliderPrincipal">
 <carousel>
     <slide>
-        <img ng-src="http://www.menucool.com/slider/prod/image-slider-1.jpg" style="margin:auto;">
-
-        <div class="carousel-caption">
-            <h4>Titulo 1</h4>
-
-            <p>Paragrafo 1</p>
+        <div class="nodejs">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-2">
+                        <img class="img-responsive" src="../img/logo-nodejs.png">
+                    </div>
+                    <div class="col-md-4 col-md-offset-0">
+                        <p>Node.js es una plataforma construida en <a href="http://code.google.com/p/v8/">Chrome's JavaScript
+                            runtime</a>
+                            para construir fácilmente aplicaciones rápidas de red escalables. Node.js utiliza una, no bloqueante
+                            modelo de E/S dirigida por eventos que lo hace ligero y eficiente, ideal para aplicaciones en
+                            tiempo real de datos intensivos que se ejecutan a través de dispositivos distribuidos.</p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </slide>
+
+    <slide>
+        <div class="mongodb">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-md-offset-0">
+                        <img class="img-responsive" src="../img/logo-mongodb.png">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 contenido">
+                        <h1>
+                            <strong>Agile and Scalable</strong>
+                        </h1>
+                        <p>MongoDB (from "hu<strong>mongo</strong>us") is an <a href="/about/source-code/">open-source</a>
+                            document database, and the <a href="http://www.mongodb.com/leading-nosql-database">leading NoSQL
+                                database</a>. Written in C++, MongoDB features:</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.section-colored -->
     </slide>
     <slide>
-        <img ng-src="http://www.menucool.com/slider/prod/image-slider-3.jpg" style="margin:auto;">
+        <div class="angular">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="span4">
+                            <h1>HTML mejorado para aplicaciones web!</h1>
 
-        <div class="carousel-caption">
-            <h4>Titulo 3</h4>
+                            <p>
+                                HTML es ideal para declarar documentos estáticos, pero se tambalea cuando tratamos de utilizarlo
+                                para declarar vistas dinámicas en aplicaciones web. AngularJS permite ampliar vocabulario HTML
+                                para su aplicación. El ambiente resultante es extraordinariamente expresiva, legible y rápida de
+                                desarrollar.
+                            </p>
+                        </div>
+                        <a class="btn btn-large btn-primary" href="http://angularjs.org/" ng-click="lightbox('stable')">
+                            <i class="icon-download-alt icon-large"></i> Aprendé mas sobre
+                            <strong> AngularJS </strong>
 
-            <p>Paragrafo 3</p>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <img class="img-responsive" src="../img/logo-angularjs.png">
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
         </div>
+        <!-- /.section-colored -->
     </slide>
     <slide>
-        <img ng-src="http://www.menucool.com/slider/prod/image-slider-1.jpg" style="margin:auto;">
+        <div class="socket">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-2">
+                        <img class="img-responsive" src="../img/socket.png">
+                        <a href="http://github.com/learnboost/socket.io/" class="download">v.9</a>
+                    </div>
+                    <div class="col-md-4 col-md-offset-0">
+                        <p>What is Socket.IO?
+                            Socket.IO aims to make realtime apps possible in every browser and mobile device, blurring the differences between the different transport mechanisms. It's care-free realtime 100% in JavaScript.</p>
+                    </div>
 
-        <div class="carousel-caption">
-            <h4>Titulo 1</h4>
 
-            <p>Paragrafo 1</p>
+                </div>
+            </div>
         </div>
     </slide>
-    <slide>
-        <img ng-src="http://www.menucool.com/slider/prod/image-slider-2.jpg" style="margin:auto;">
 
-        <div class="carousel-caption">
-            <h4>Titulo 2</h4>
-
-            <p>Paragrafo 2</p>
-        </div>
-    </slide>
-    <slide>
-        <img ng-src="http://www.menucool.com/slider/prod/image-slider-3.jpg" style="margin:auto;">
-
-        <div class="carousel-caption">
-            <h4>Titulo 3</h4>
-
-            <p>Paragrafo 3</p>
-        </div>
-    </slide>
 </carousel>
+</div>
 
 <div class="section">
     <div class="container">
@@ -129,134 +184,6 @@
 
 </div>
 <!-- /.section -->
-
-
-<div class="section-colored mongodb">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <img class="img-responsive" src="../img/logo-mongodb.png">
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 contenido">
-                <h1>
-                    <strong>Agile and Scalable</strong>
-                </h1>
-
-                <p>MongoDB (from "hu<strong>mongo</strong>us") is an <a href="/about/source-code/">open-source</a>
-                    document database, and the <a href="http://www.mongodb.com/leading-nosql-database">leading NoSQL
-                        database</a>. Written in C++, MongoDB features:</p>
-                <ul class="home">
-                    <li>
-                        <a href="http://docs.mongodb.org/manual/core/data-modeling/"><strong>Document-Oriented Storage
-                            »</strong></a>
-
-                        <p><a href="http://bsonspec.org">JSON-style documents</a> with dynamic schemas offer simplicity
-                            and power.</p>
-                    </li>
-                    <li>
-                        <a href="http://docs.mongodb.org/manual/indexes/"><strong>Full Index Support »</strong></a>
-
-                        <p>Index on any attribute, just like you're used to.</p>
-                    </li>
-                    <li>
-                        <a href="http://docs.mongodb.org/manual/replication/"><strong>Replication &amp; High
-                            Availability »</strong></a>
-
-                        <p>Mirror across LANs and WANs for scale and peace of mind.</p>
-                    </li>
-                    <li>
-                        <a href="http://docs.mongodb.org/manual/sharding/"><strong>Auto-Sharding »</strong></a>
-
-                        <p>Scale horizontally without compromising functionality.</p>
-                    </li>
-                    <li>
-                        <a href="http://docs.mongodb.org/manual/applications/read/"><strong>Querying »</strong></a>
-
-                        <p>Rich, document-based queries.</p>
-                    </li>
-                    <li>
-                        <a href="http://docs.mongodb.org/manual/applications/update/"><strong>Fast In-Place Updates
-                            »</strong></a>
-
-                        <p>Atomic modifiers for contention-free performance.</p>
-                    </li>
-                    <li>
-                        <a href="http://docs.mongodb.org/manual/applications/map-reduce/"><strong>Map/Reduce »</strong></a>
-
-                        <p>Flexible aggregation and data processing.</p>
-                    </li>
-                    <li>
-                        <a href="http://docs.mongodb.org/manual/applications/gridfs/"><strong>GridFS »</strong></a>
-
-                        <p>Store files of any size without complicating your stack.</p>
-                    </li>
-                    <li>
-                        <a href="http://www.mongodb.com/products/mongodb-subscriptions"><strong>Professional Support by
-                            MongoDB »</strong></a>
-
-                        <p>Enterprise class support, training, and consulting available.</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-</div>
-<!-- /.section-colored -->
-
-<div class="section-colored angular">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="span4">
-                    <h1>HTML mejorado para aplicaciones web!</h1>
-
-                    <p>
-                        HTML es ideal para declarar documentos estáticos, pero se tambalea cuando tratamos de utilizarlo
-                        para declarar vistas dinámicas en aplicaciones web. AngularJS permite ampliar vocabulario HTML
-                        para su aplicación. El ambiente resultante es extraordinariamente expresiva, legible y rápida de
-                        desarrollar.
-                    </p>
-                </div>
-                <a class="btn btn-large btn-primary" href="http://angularjs.org/" ng-click="lightbox('stable')">
-                    <i class="icon-download-alt icon-large"></i> Aprendé mas sobre
-                    <strong> AngularJS </strong>
-
-                </a>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <img class="img-responsive" src="../img/logo-angularjs.png">
-            </div>
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-</div>
-<!-- /.section-colored -->
-
-<div class="section-colored nodejs">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <img class="img-responsive" src="../img/logo-nodejs.png">
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <p>Node.js es una plataforma construida en <a href="http://code.google.com/p/v8/">Chrome's JavaScript
-                    runtime</a>
-                    para construir fácilmente aplicaciones rápidas de red escalables. Node.js utiliza una, no bloqueante
-                    modelo de E / S dirigida por eventos que lo hace ligero y eficiente, ideal para aplicaciones en
-                    tiempo real de datos intensivos que se ejecutan a través de dispositivos distribuidos.</p>
-
-            </div>
-
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-</div>
-<!-- /.section-colored -->
-
 
 <div class="container">
 
