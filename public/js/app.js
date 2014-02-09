@@ -1,4 +1,4 @@
-window.app = angular.module('jts', ['ngCookies', 'ngResource', 'ngAnimate', 'ngRoute', 'ui.bootstrap', 'ui.route', 'jts.system',
+window.app = angular.module('jts', ['ngCookies', 'ngResource', 'ngAnimate', 'ngRoute', 'ui.bootstrap', 'jts.system',
     'jts.socket' ,'jts.mensajes', 'jts.chat', 'jts.posit', 'jts.graphic', 'jts.toaster', 'jts.users', 'jts.directives']);
 console.log("windows.app = jts")
 angular.module('jts.system', []);

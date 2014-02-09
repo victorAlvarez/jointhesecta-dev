@@ -8,9 +8,13 @@ angular.module('jts.chat').controller('ChatController', ['$scope', '$http', '$ro
         var socket = io.connect('/modulos/chat', {'force new connection' : true});
         angular.element(document).ready(function () {
             socket.emit('addUserChat', window.user);
-            $http.get('/chat').success(function (data) {
-                //$scope.name = data
-                console.log(data);
+            socket.on('addUserChatOk', function (bandera) {
+                if (bandera) {
+                    $http.get('/chat').success(function (data) {
+                        //$scope.name = data
+                        console.log(data);
+                    });
+                }
             });
             cargar = true;
         });
